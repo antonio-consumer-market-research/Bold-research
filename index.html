@@ -91,6 +91,9 @@ textarea::placeholder,input::placeholder{color:rgba(255,255,255,0.22);}
 .clarify-q{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;margin-bottom:14px;}
 .clarify-q p{font-size:13px;color:rgba(255,255,255,0.8);margin-bottom:10px;line-height:1.5;}
 .clarify-q textarea{min-height:72px;}
+.clarify-badge{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;margin-bottom:8px;}
+.clarify-badge.fija{background:rgba(107,210,130,0.15);color:#6bd282;}
+.clarify-badge.dinamica{background:rgba(255,40,71,0.15);color:#FF6B80;}
 .success-box{background:rgba(107,210,130,0.1);border:1px solid rgba(107,210,130,0.25);border-radius:12px;padding:20px;text-align:center;}
 .success-box h3{font-size:16px;font-weight:700;color:#6bd282;margin-bottom:6px;}
 .success-box p{font-size:13px;color:rgba(255,255,255,0.5);}
@@ -106,7 +109,7 @@ textarea::placeholder,input::placeholder{color:rgba(255,255,255,0.22);}
 .chat-header-info h4{font-size:13px;font-weight:600;margin-bottom:2px;}
 .chat-header-info p{font-size:11px;color:rgba(255,255,255,0.4);}
 .chat-messages{flex:1;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:12px;}
-.msg{max-width:76%;font-size:13px;line-height:1.65;padding:11px 15px;border-radius:14px;}
+.msg{max-width:76%;font-size:13px;line-height:1.65;padding:11px 15px;border-radius:14px;white-space:pre-wrap;}
 .msg.bot{background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.88);align-self:flex-start;border-bottom-left-radius:4px;}
 .msg.user{background:linear-gradient(135deg,#FF2847,#3E2566);color:#fff;align-self:flex-end;border-bottom-right-radius:4px;}
 .msg-loading{display:flex;gap:5px;align-items:center;padding:11px 15px;background:rgba(255,255,255,0.06);border-radius:14px;border-bottom-left-radius:4px;align-self:flex-start;}
@@ -134,10 +137,21 @@ textarea::placeholder,input::placeholder{color:rgba(255,255,255,0.22);}
 .add-form{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:24px;margin-bottom:24px;}
 .add-form h3{font-size:15px;font-weight:700;margin-bottom:18px;}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+/* KB */
+.kb-section{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:24px;margin-bottom:24px;}
+.kb-section h3{font-size:15px;font-weight:700;margin-bottom:6px;}
+.kb-section p{font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:18px;line-height:1.6;}
+.kb-list{display:flex;flex-direction:column;gap:10px;max-height:400px;overflow-y:auto;}
+.kb-item{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:14px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;}
+.kb-item-info h4{font-size:13px;font-weight:600;margin-bottom:3px;}
+.kb-item-info p{font-size:11px;color:rgba(255,255,255,0.35);}
+.kb-item-actions{display:flex;gap:6px;flex-shrink:0;}
+.kb-empty{text-align:center;padding:30px;color:rgba(255,255,255,0.3);font-size:13px;}
 /* MODAL */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:200;align-items:center;justify-content:center;}
 .modal-overlay.open{display:flex;}
-.modal{background:#12122a;border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:32px;max-width:480px;width:90%;}
+.modal{background:#12122a;border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:32px;max-width:480px;width:90%;max-height:90vh;overflow-y:auto;}
+.modal-wide{max-width:640px;}
 .modal-close{float:right;background:rgba(255,255,255,0.07);border:none;color:#fff;font-family:'Montserrat',sans-serif;font-size:12px;padding:7px 16px;border-radius:8px;cursor:pointer;}
 .badge-new{background:linear-gradient(90deg,#FF2847,#6B2D60);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:2px 7px;border-radius:6px;margin-left:6px;vertical-align:middle;}
 </style>
@@ -211,7 +225,6 @@ textarea::placeholder,input::placeholder{color:rgba(255,255,255,0.22);}
     <div class="step"><div class="step-dot pending-dot" id="sd3">3</div><span class="step-label" id="sl3">Enviado</span></div>
   </div>
   <div class="form-wrap">
-    <!-- Step 1: Brief -->
     <div id="step1" class="form-card">
       <div class="form-row"><label>Tu nombre</label><input type="text" id="f-nombre" placeholder="Ej: María García"/></div>
       <div class="form-row"><label>Producto o servicio a investigar</label><input type="text" id="f-producto" placeholder="Ej: Datáfono Bold Pro, Cuenta Digital..."/></div>
@@ -220,16 +233,14 @@ textarea::placeholder,input::placeholder{color:rgba(255,255,255,0.22);}
       <div class="form-row"><label>Contexto adicional (opcional)</label><textarea id="f-contexto" placeholder="¿Hay investigaciones previas? ¿Alguna restricción de tiempo?"></textarea></div>
       <div class="btn-row"><button class="btn-primary" onclick="generateClarifications()">Continuar →</button></div>
     </div>
-    <!-- Step 2: Clarificaciones dinámicas -->
     <div id="step2" class="form-card" style="display:none;">
-      <p style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:20px;line-height:1.6;">Para asegurarnos de generar las preguntas correctas, responde lo siguiente:</p>
+      <p style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:20px;line-height:1.6;">Responde estas preguntas para que el equipo de research tenga todo el contexto necesario:</p>
       <div id="clarify-container"></div>
       <div class="btn-row">
         <button class="btn-secondary" onclick="goSolicitarStep(1)">← Volver</button>
         <button class="btn-primary" id="btn-enviar" onclick="submitBrief()">Enviar solicitud ↗</button>
       </div>
     </div>
-    <!-- Step 3: Confirmación -->
     <div id="step3" class="form-card" style="display:none;">
       <div class="success-box">
         <h3>✓ Solicitud enviada</h3>
@@ -293,10 +304,21 @@ textarea::placeholder,input::placeholder{color:rgba(255,255,255,0.22);}
   </div>
   <div id="admin-content" style="display:none;">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;">
-      <div><div class="section-title">Administrar investigaciones</div><div class="section-sub" style="margin-bottom:0;">Agrega, edita o elimina investigaciones del repositorio.</div></div>
+      <div><div class="section-title">Administrar investigaciones</div><div class="section-sub" style="margin-bottom:0;">Agrega, edita, elimina investigaciones y nutre la IA con hallazgos.</div></div>
       <button class="btn-secondary" onclick="lockAdmin()">Cerrar sesión</button>
     </div>
-    <!-- Add form -->
+
+    <!-- KNOWLEDGE BASE -->
+    <div class="kb-section">
+      <h3>🧠 Knowledge Base — Nutrir la IA</h3>
+      <p>Agrega los hallazgos clave de cada investigación. La IA del asistente usará esta información para responder con datos reales de tus estudios.</p>
+      <div class="btn-row" style="margin-bottom:16px;">
+        <button class="btn-primary" onclick="openKbModal()">+ Agregar hallazgos</button>
+      </div>
+      <div id="kb-list" class="kb-list"></div>
+    </div>
+
+    <!-- INVESTIGACIONES -->
     <div class="add-form">
       <h3 id="form-mode-title">Agregar investigación</h3>
       <div class="form-grid">
@@ -323,7 +345,6 @@ textarea::placeholder,input::placeholder{color:rgba(255,255,255,0.22);}
         <button class="btn-secondary" id="btn-cancel-edit" style="display:none" onclick="cancelEdit()">Cancelar</button>
       </div>
     </div>
-    <!-- Table -->
     <div class="admin-wrap">
       <table class="admin-table">
         <thead><tr><th>Título</th><th>Vertical</th><th>Estado</th><th>Fecha</th><th>Acciones</th></tr></thead>
@@ -333,7 +354,7 @@ textarea::placeholder,input::placeholder{color:rgba(255,255,255,0.22);}
   </div>
 </div>
 
-<!-- MODAL -->
+<!-- MODAL investigación -->
 <div class="modal-overlay" id="modal">
   <div class="modal">
     <button class="modal-close" onclick="closeModal()">✕ Cerrar</button>
@@ -345,22 +366,56 @@ textarea::placeholder,input::placeholder{color:rgba(255,255,255,0.22);}
   </div>
 </div>
 
+<!-- MODAL KB -->
+<div class="modal-overlay" id="kb-modal">
+  <div class="modal modal-wide">
+    <button class="modal-close" onclick="closeKbModal()">✕ Cerrar</button>
+    <h3 style="margin-top:12px;margin-bottom:6px;font-size:17px;font-weight:700;" id="kb-modal-title">Agregar hallazgos a la IA</h3>
+    <p style="font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:20px;">Escribe o pega los hallazgos, insights y conclusiones clave de esta investigación.</p>
+    <div class="form-row"><label>Título de la investigación</label><input type="text" id="kb-titulo" placeholder="Ej: NPS Cuenta Digital Q1 2025"/></div>
+    <div class="form-row"><label>Vertical</label>
+      <select id="kb-vertical">
+        <option value="">Seleccionar...</option>
+        <option>Payments</option><option>Banking</option><option>Usuarios</option><option>Software</option><option>Producto</option>
+      </select>
+    </div>
+    <div class="form-row">
+      <label>Hallazgos y conclusiones clave</label>
+      <textarea id="kb-content" style="min-height:200px;" placeholder="Pega aquí los hallazgos principales, datos numéricos, quotes de usuarios, conclusiones, recomendaciones... Cuanto más detalle, mejor responderá la IA."></textarea>
+    </div>
+    <input type="hidden" id="kb-edit-id" value=""/>
+    <div class="btn-row">
+      <button class="btn-primary" onclick="saveKbEntry()">Guardar hallazgos</button>
+      <button class="btn-secondary" onclick="closeKbModal()">Cancelar</button>
+    </div>
+  </div>
+</div>
+
 <script>
 const ADMIN_PASSWORD = 'bold2025';
+const API_URL = '/api/chat'; // ← Proxy Vercel, no llama directo a Anthropic
 const vClass = {Payments:'v-payments',Banking:'v-banking',Usuarios:'v-usuarios',Software:'v-software',Producto:'v-producto'};
 let data = [];
+let kbEntries = [];
 let editingIndex = null;
 let statusFilter = null;
 let verticalFilter = null;
 
-// STORAGE
+// ── STORAGE ──────────────────────────────────────────────
 async function saveData(){
   try{ await window.storage.set('investigations', JSON.stringify(data)); }catch(e){}
+}
+async function saveKb(){
+  try{ await window.storage.set('kb_entries', JSON.stringify(kbEntries)); }catch(e){}
 }
 async function loadData(){
   try{
     const r = await window.storage.get('investigations');
     if(r && r.value) data = JSON.parse(r.value);
+  }catch(e){}
+  try{
+    const r2 = await window.storage.get('kb_entries');
+    if(r2 && r2.value) kbEntries = JSON.parse(r2.value);
   }catch(e){}
   if(!data.length) data = [
     {title:"Percepción de tarifas en comerciantes PYME",desc:"Cómo los pequeños comerciantes perciben y comparan las tarifas de Bold frente a la competencia.",vertical:"Payments",status:"done",date:"Feb 2025",users:42,link:""},
@@ -385,7 +440,7 @@ function refreshStats(){
   document.getElementById('stat-pending').textContent = data.filter(d=>d.status==='pending').length;
 }
 
-// FILTERS
+// ── FILTERS ──────────────────────────────────────────────
 function applyFilters(){
   const q = document.querySelector('.search-bar').value.toLowerCase();
   let filtered = data.map((d,i)=>({...d,_i:i}));
@@ -442,7 +497,82 @@ function openModal(i){
 }
 function closeModal(){document.getElementById('modal').classList.remove('open');}
 
-// SOLICITAR
+// ── KNOWLEDGE BASE ────────────────────────────────────────
+function openKbModal(id){
+  document.getElementById('kb-edit-id').value = id||'';
+  if(id){
+    const e = kbEntries.find(k=>k.id===id);
+    if(e){
+      document.getElementById('kb-modal-title').textContent='Editar hallazgos';
+      document.getElementById('kb-titulo').value=e.titulo;
+      document.getElementById('kb-vertical').value=e.vertical;
+      document.getElementById('kb-content').value=e.content;
+    }
+  } else {
+    document.getElementById('kb-modal-title').textContent='Agregar hallazgos a la IA';
+    document.getElementById('kb-titulo').value='';
+    document.getElementById('kb-vertical').value='';
+    document.getElementById('kb-content').value='';
+  }
+  document.getElementById('kb-modal').classList.add('open');
+}
+function closeKbModal(){document.getElementById('kb-modal').classList.remove('open');}
+
+function saveKbEntry(){
+  const titulo = document.getElementById('kb-titulo').value.trim();
+  const vertical = document.getElementById('kb-vertical').value;
+  const content = document.getElementById('kb-content').value.trim();
+  if(!titulo||!content){alert('Completa el título y los hallazgos.');return;}
+  const editId = document.getElementById('kb-edit-id').value;
+  if(editId){
+    const idx = kbEntries.findIndex(k=>k.id===editId);
+    if(idx>-1) kbEntries[idx]={id:editId,titulo,vertical,content,updated:new Date().toLocaleDateString('es-CO')};
+  } else {
+    kbEntries.push({id:Date.now().toString(),titulo,vertical,content,updated:new Date().toLocaleDateString('es-CO')});
+  }
+  saveKb();
+  renderKbList();
+  closeKbModal();
+}
+
+function deleteKbEntry(id){
+  if(!confirm('¿Eliminar estos hallazgos de la IA?'))return;
+  kbEntries = kbEntries.filter(k=>k.id!==id);
+  saveKb();
+  renderKbList();
+}
+
+function renderKbList(){
+  const el = document.getElementById('kb-list');
+  if(!kbEntries.length){
+    el.innerHTML='<div class="kb-empty">No hay hallazgos cargados aún. Agrega contenido para que la IA responda con datos reales.</div>';
+    return;
+  }
+  el.innerHTML = kbEntries.map(k=>`
+    <div class="kb-item">
+      <div class="kb-item-info">
+        <h4>${k.titulo}</h4>
+        <p>${k.vertical||'Sin vertical'} · Actualizado ${k.updated} · ${k.content.length} caracteres</p>
+      </div>
+      <div class="kb-item-actions">
+        <button class="btn-secondary" style="font-size:11px;padding:5px 12px;" onclick="openKbModal('${k.id}')">Editar</button>
+        <button class="btn-danger" onclick="deleteKbEntry('${k.id}')">Eliminar</button>
+      </div>
+    </div>`).join('');
+}
+
+function buildKbContext(){
+  if(!kbEntries.length) return '';
+  return '\n\nCONOCIMIENTO BASE — INVESTIGACIONES REALES DE BOLD:\n' +
+    kbEntries.map(k=>`\n## ${k.titulo}${k.vertical?' ('+k.vertical+')':''}\n${k.content}`).join('\n');
+}
+
+// ── SOLICITAR ─────────────────────────────────────────────
+const FIXED_QUESTIONS = [
+  {pregunta:'¿Cuál es la fecha límite o urgencia para tener resultados de esta investigación?', tipo:'fija'},
+  {pregunta:'¿Quién tomará decisiones con base en los hallazgos? (ej: producto, marketing, C-level)', tipo:'fija'},
+  {pregunta:'¿Existe alguna hipótesis previa que quieras validar o refutar?', tipo:'fija'},
+];
 let clarifyQuestions = [];
 
 async function generateClarifications(){
@@ -453,34 +583,40 @@ async function generateClarifications(){
   if(!nombre||!prod||!seg||!obj){alert('Por favor completa todos los campos obligatorios.');return;}
   goSolicitarStep(2);
   const container = document.getElementById('clarify-container');
-  container.innerHTML='<div class="empty">Generando preguntas de clarificación...</div>';
+  container.innerHTML='<div class="empty">Generando preguntas...</div>';
   document.getElementById('btn-enviar').disabled = true;
-  const prompt = `Eres experto en investigación de mercado para Bold, fintech colombiana de pagos. 
-Alguien solicita una nueva investigación con este brief:
+
+  const prompt = `Eres experto en investigación de mercado para Bold, fintech colombiana de pagos.
+Alguien solicita una investigación con este brief:
 - Producto: ${prod}
 - Segmento: ${seg}
 - Objetivo: ${obj}
 - Contexto: ${document.getElementById('f-contexto').value||'N/A'}
 
-Genera entre 3 y 5 preguntas de clarificación ESPECÍFICAS para este brief concreto. Las preguntas deben ayudar a entender mejor el alcance, los decisores, las hipótesis previas y los criterios de éxito de ESTA investigación en particular. No hagas preguntas genéricas.
+Genera EXACTAMENTE 3 preguntas de clarificación dinámicas y MUY ESPECÍFICAS para este brief en particular. 
+NO hagas preguntas genéricas ni sobre fechas/decisores (esas ya se hacen por separado).
+Enfócate en el CONTENIDO específico: metodología ideal, métricas clave, casos de uso concretos, usuarios específicos a entrevistar, etc.
 
-Responde SOLO en JSON así (sin markdown, sin texto extra):
+Responde SOLO en JSON (sin markdown, sin texto extra):
 [{"pregunta":"..."},{"pregunta":"..."},{"pregunta":"..."}]`;
+
   try{
-    const r = await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:600,messages:[{role:'user',content:prompt}]})});
+    const r = await fetch(API_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:500,messages:[{role:'user',content:prompt}]})});
     const d = await r.json();
     const text = d.content?.map(b=>b.text||'').join('')||'[]';
-    clarifyQuestions = JSON.parse(text.replace(/```json|```/g,'').trim());
-    container.innerHTML = clarifyQuestions.map((q,i)=>`
-      <div class="clarify-q">
-        <p>${i+1}. ${q.pregunta}</p>
-        <textarea id="cq-${i}" placeholder="Tu respuesta..."></textarea>
-      </div>`).join('');
-    document.getElementById('btn-enviar').disabled = false;
+    const dynamic = JSON.parse(text.replace(/```json|```/g,'').trim()).map(q=>({...q,tipo:'dinamica'}));
+    clarifyQuestions = [...FIXED_QUESTIONS, ...dynamic];
   }catch(e){
-    container.innerHTML='<div class="empty">Error generando preguntas. Intenta de nuevo.</div>';
-    document.getElementById('btn-enviar').disabled = false;
+    clarifyQuestions = [...FIXED_QUESTIONS];
   }
+
+  container.innerHTML = clarifyQuestions.map((q,i)=>`
+    <div class="clarify-q">
+      <span class="clarify-badge ${q.tipo==='fija'?'fija':'dinamica'}">${q.tipo==='fija'?'Siempre se pregunta':'Específica para tu brief'}</span>
+      <p>${i+1}. ${q.pregunta}</p>
+      <textarea id="cq-${i}" placeholder="Tu respuesta..."></textarea>
+    </div>`).join('');
+  document.getElementById('btn-enviar').disabled = false;
 }
 
 async function submitBrief(){
@@ -501,11 +637,11 @@ async function submitBrief(){
   const genPrompt = `Eres experto en investigación de mercado para Bold, fintech colombiana de pagos. Con base en este brief y las clarificaciones, genera entre 15 y 20 preguntas de encuesta listas para enviar a usuarios reales.\n\n${briefText}\n\nInstrucciones: mezcla cerradas (Likert 1-5, opción múltiple, NPS) con 2-3 abiertas. Indica el tipo entre paréntesis. Ordena de menor a mayor fricción. Solo las preguntas numeradas, sin introducción ni texto extra.`;
 
   try{
-    const r = await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:genPrompt}]})});
+    const r = await fetch(API_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:genPrompt}]})});
     const d = await r.json();
     const questions = d.content?.map(b=>b.text||'').join('')||'';
     const emailBody = `${briefText}\n\n---\nPREGUNTAS GENERADAS PARA LA AGENCIA:\n\n${questions}`;
-    await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:200,mcp_servers:[{type:'url',url:'https://gmail.mcp.claude.com/mcp',name:'gmail-mcp'}],messages:[{role:'user',content:`Envía un email a antonio.ordonez@bold.co con asunto "Nueva solicitud de investigación: ${brief.producto}" y este cuerpo:\n${emailBody}`}]})});
+    await fetch(API_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:200,mcp_servers:[{type:'url',url:'https://gmail.mcp.claude.com/mcp',name:'gmail-mcp'}],messages:[{role:'user',content:`Envía un email a antonio.ordonez@bold.co con asunto "Nueva solicitud de investigación: ${brief.producto}" y este cuerpo:\n${emailBody}`}]})});
   }catch(e){}
 
   goSolicitarStep(3);
@@ -527,13 +663,14 @@ function resetSolicitar(){
   goSolicitarStep(1);
 }
 
-// ADMIN
+// ── ADMIN ─────────────────────────────────────────────────
 function checkPass(){
   const p = document.getElementById('admin-pass').value;
   if(p===ADMIN_PASSWORD){
     document.getElementById('admin-lock').style.display='none';
     document.getElementById('admin-content').style.display='block';
     renderAdminTable();
+    renderKbList();
   } else {
     document.getElementById('lock-err').style.display='block';
     document.getElementById('admin-pass').value='';
@@ -592,7 +729,6 @@ function editInvestigation(i){
   document.getElementById('a-link').value=d.link||'';
   document.getElementById('form-mode-title').textContent='Editar investigación';
   document.getElementById('btn-cancel-edit').style.display='inline-block';
-  document.getElementById('add-form')?.scrollIntoView({behavior:'smooth'});
 }
 
 function cancelEdit(){
@@ -613,9 +749,17 @@ function deleteInvestigation(i){
   renderAdminTable();
 }
 
-// CHAT
-const SYSTEM_PROMPT=`Eres el asistente de investigación de mercado de Bold, fintech colombiana líder en pagos. Conoces todos los estudios organizados en 5 verticales: Payments, Banking, Usuarios, Software y Producto. Respondes preguntas sobre hallazgos, NPS, pain points, benchmarks e insights. Eres conciso y directo.`;
+// ── CHAT ──────────────────────────────────────────────────
 let chatHistory=[];
+
+function buildSystemPrompt(){
+  const kb = buildKbContext();
+  return `Eres el asistente de investigación de mercado de Bold, fintech colombiana líder en pagos. 
+Respondes preguntas sobre investigaciones organizadas en 5 verticales: Payments, Banking, Usuarios, Software y Producto.
+Eres conciso, directo y basas tus respuestas SOLO en la información real disponible.
+Si no tienes información sobre algo, lo dices claramente en vez de inventar.${kb}`;
+}
+
 async function sendChat(){
   const input=document.getElementById('chat-input');
   const msg=input.value.trim();
@@ -625,14 +769,15 @@ async function sendChat(){
   chatHistory.push({role:'user',content:msg});
   const loading=addLoading();
   try{
-    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:600,system:SYSTEM_PROMPT,messages:chatHistory})});
+    const r=await fetch(API_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:600,system:buildSystemPrompt(),messages:chatHistory})});
     const d=await r.json();
     const reply=d.content?.map(b=>b.text||'').join('')||'Sin respuesta.';
     chatHistory.push({role:'assistant',content:reply});
     loading.remove();
     addMsg('bot',reply);
-  }catch(e){loading.remove();addMsg('bot','Error de conexión.');}
+  }catch(e){loading.remove();addMsg('bot','Error de conexión. Verifica que el portal esté bien configurado.');}
 }
+
 function addMsg(type,text){
   const c=document.getElementById('chat-messages');
   const m=document.createElement('div');
