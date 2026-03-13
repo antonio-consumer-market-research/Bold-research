@@ -808,11 +808,12 @@ async function sendChat(){
   try{
     const r=await fetch(API_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:600,system:buildSystemPrompt(),messages:chatHistory})});
     const d=await r.json();
+    if(d.error){loading.remove();addMsg('bot','Error: '+d.error.message);return;}
     const reply=d.content?.map(b=>b.text||'').join('')||'Sin respuesta.';
     chatHistory.push({role:'assistant',content:reply});
     loading.remove();
     addMsg('bot',reply);
-  }catch(e){loading.remove();addMsg('bot','Error de conexión. Verifica que el portal esté bien configurado.');}
+  }catch(e){loading.remove();addMsg('bot','Error: '+e.message);}
 }
 
 function addMsg(type,text){
