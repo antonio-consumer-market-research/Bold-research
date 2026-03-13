@@ -404,19 +404,19 @@ let verticalFilter = null;
 
 // ── STORAGE ──────────────────────────────────────────────
 async function saveData(){
-  try{ await window.storage.set('investigations', JSON.stringify(data)); }catch(e){}
+  try{ localStorage.setItem('bold_investigations', JSON.stringify(data)); }catch(e){}
 }
 async function saveKb(){
-  try{ await window.storage.set('kb_entries', JSON.stringify(kbEntries)); }catch(e){}
+  try{ localStorage.setItem('bold_kb_entries', JSON.stringify(kbEntries)); }catch(e){}
 }
 async function loadData(){
   try{
-    const r = await window.storage.get('investigations');
-    if(r && r.value) data = JSON.parse(r.value);
+    const r = localStorage.getItem('bold_investigations');
+    if(r) data = JSON.parse(r);
   }catch(e){}
   try{
-    const r2 = await window.storage.get('kb_entries');
-    if(r2 && r2.value) kbEntries = JSON.parse(r2.value);
+    const r2 = localStorage.getItem('bold_kb_entries');
+    if(r2) kbEntries = JSON.parse(r2);
   }catch(e){}
   if(!data.length) data = [
     {title:"Percepción de tarifas en comerciantes PYME",desc:"Cómo los pequeños comerciantes perciben y comparan las tarifas de Bold frente a la competencia.",vertical:"Payments",status:"done",date:"Feb 2025",users:42,link:""},
