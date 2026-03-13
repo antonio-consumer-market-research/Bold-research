@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Montserrat',sans-serif;background:#0d0d1a;color:#fff;min-height:100vh;}
+nav{display:flex;align-items:center;justify-content:space-between;padding:18px 48px;position:sticky;top:0;z-index:100;background:rgba(13,13,26,0.96);border-bottom:1px solid rgba(255,255,255,0.07);}
+.logo{font-weight:700;font-size:18px;letter-spacing:1px;background:linear-gradient(90deg,#FF2847,#6B2D60);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.nav-tabs{display:flex;gap:4px;}
+.nav-tab{background:none;border:none;color:rgba(255,255,255,0.55);font-family:'Montserrat',sans-serif;font-size:13px;font-weight:500;padding:8px 18px;border-radius:20px;cursor:pointer;transition:all .2s;}
+.nav-tab:hover{color:#fff;background:rgba(255,255,255,0.07);}
+.nav-tab.active{color:#fff;background:linear-gradient(135deg,#FF2847,#3E2566);}
+.nav-tab.admin-tab{color:rgba(255,180,50,0.6);font-size:12px;}
+.nav-tab.admin-tab.active{background:rgba(255,180,50,0.15);color:#ffb432;}
+.panel{display:none;padding:40px 48px 60px;}
+.panel.active{display:block;}
+.hero{background:linear-gradient(135deg,#FF2847 0%,#6B2D60 40%,#3E2566 70%,#121E6C 100%);border-radius:20px;padding:52px 48px;margin-bottom:36px;}
+.hero h1{font-size:32px;font-weight:700;margin-bottom:10px;line-height:1.2;}
+.hero p{font-size:15px;color:rgba(255,255,255,0.8);max-width:620px;line-height:1.7;}
+.hero-stats{display:flex;gap:40px;margin-top:28px;}
+.stat-n{font-size:28px;font-weight:700;}
+.stat-l{font-size:11px;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:.5px;margin-top:2px;}
+.filter-bar{display:flex;align-items:center;gap:12px;margin-bottom:28px;flex-wrap:wrap;}
+.search-bar{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:#fff;font-family:'Montserrat',sans-serif;font-size:13px;padding:9px 16px;border-radius:20px;outline:none;width:240px;}
+.search-bar::placeholder{color:rgba(255,255,255,0.3);}
+.divider-v{width:1px;height:22px;background:rgba(255,255,255,0.1);}
+.filter-group{display:flex;gap:6px;align-items:center;}
+.group-label{font-size:11px;color:rgba(255,255,255,0.35);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-right:2px;}
+.filter-btn{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.09);color:rgba(255,255,255,0.55);font-family:'Montserrat',sans-serif;font-size:12px;font-weight:500;padding:6px 14px;border-radius:20px;cursor:pointer;transition:all .18s;}
+.filter-btn:hover{color:#fff;background:rgba(255,255,255,0.1);}
+.filter-btn.active-status{background:rgba(107,210,130,0.15);border-color:rgba(107,210,130,0.35);color:#6bd282;}
+.filter-btn.active-pending{background:rgba(255,180,50,0.13);border-color:rgba(255,180,50,0.3);color:#ffb432;}
+.filter-btn.active-vertical{background:linear-gradient(135deg,rgba(255,40,71,0.2),rgba(62,37,102,0.3));border-color:rgba(255,40,71,0.35);color:#fff;}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px;}
+.section-header h2{font-size:15px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;}
+.count-badge{font-size:11px;font-weight:700;padding:3px 10px;border-radius:10px;}
+.badge-done{background:rgba(107,210,130,0.15);color:#6bd282;}
+.badge-pending{background:rgba(255,180,50,0.13);color:#ffb432;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(272px,1fr));gap:18px;margin-bottom:48px;}
+.card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:22px;cursor:pointer;transition:all .22s;position:relative;overflow:hidden;}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.card.done::before{background:linear-gradient(90deg,#6bd282,#3E2566);}
+.card.pending::before{background:linear-gradient(90deg,#ffb432,#FF2847);}
+.card:hover{background:rgba(255,255,255,0.07);transform:translateY(-2px);border-color:rgba(255,255,255,0.14);}
+.vertical-tag{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:3px 10px;border-radius:10px;margin-bottom:12px;}
+.v-payments{background:rgba(255,40,71,0.12);color:#FF6B80;}
+.v-banking{background:rgba(18,30,108,0.35);color:#7b9fff;}
+.v-usuarios{background:rgba(107,45,96,0.3);color:#d47de8;}
+.v-software{background:rgba(30,90,80,0.3);color:#5dd9c0;}
+.v-producto{background:rgba(90,60,10,0.35);color:#ffcc6b;}
+.card h3{font-size:14px;font-weight:600;margin-bottom:7px;line-height:1.4;}
+.card p{font-size:12px;color:rgba(255,255,255,0.48);line-height:1.5;margin-bottom:14px;}
+.card-footer{display:flex;justify-content:space-between;align-items:center;}
+.card-date{font-size:11px;color:rgba(255,255,255,0.3);}
+.status-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.dot-done{background:#6bd282;}
+.dot-pending{background:#ffb432;}
+.card-meta-row{display:flex;align-items:center;gap:6px;}
+.empty{text-align:center;padding:40px;color:rgba(255,255,255,0.3);font-size:13px;}
+/* FORM */
+.section-title{font-size:20px;font-weight:700;margin-bottom:6px;}
+.section-sub{font-size:13px;color:rgba(255,255,255,0.45);margin-bottom:28px;}
+.form-wrap{max-width:680px;}
+.step-indicator{display:flex;align-items:center;gap:0;margin-bottom:32px;}
+.step{display:flex;align-items:center;gap:8px;}
+.step-dot{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;}
+.step-dot.done{background:linear-gradient(135deg,#FF2847,#3E2566);}
+.step-dot.active{background:linear-gradient(135deg,#FF2847,#3E2566);box-shadow:0 0 0 4px rgba(255,40,71,0.2);}
+.step-dot.pending-dot{background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.4);}
+.step-label{font-size:12px;font-weight:500;color:rgba(255,255,255,0.4);}
+.step-label.active{color:#fff;}
+.step-line{flex:1;height:1px;background:rgba(255,255,255,0.1);margin:0 8px;}
+.form-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:28px;}
+label{display:block;font-size:11px;font-weight:700;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
+textarea,input[type=text],input[type=email],input[type=password],select{width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:#fff;font-family:'Montserrat',sans-serif;font-size:13px;padding:11px 14px;border-radius:10px;outline:none;transition:border .2s;resize:vertical;}
+textarea{min-height:100px;}
+select option{background:#1a1a2e;color:#fff;}
+textarea:focus,input:focus,select:focus{border-color:rgba(255,40,71,0.45);}
+textarea::placeholder,input::placeholder{color:rgba(255,255,255,0.22);}
+.form-row{margin-bottom:18px;}
+.btn-primary{background:linear-gradient(135deg,#FF2847,#3E2566);border:none;color:#fff;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;padding:11px 26px;border-radius:12px;cursor:pointer;transition:opacity .2s;}
+.btn-primary:hover{opacity:.87;}
+.btn-primary:disabled{opacity:.4;cursor:not-allowed;}
+.btn-secondary{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.65);font-family:'Montserrat',sans-serif;font-size:13px;font-weight:500;padding:11px 22px;border-radius:12px;cursor:pointer;}
+.btn-danger{background:rgba(255,40,71,0.15);border:1px solid rgba(255,40,71,0.3);color:#FF6B80;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:500;padding:7px 14px;border-radius:8px;cursor:pointer;}
+.btn-row{display:flex;gap:10px;margin-top:6px;flex-wrap:wrap;}
+/* clarify questions */
+.clarify-q{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;margin-bottom:14px;}
+.clarify-q p{font-size:13px;color:rgba(255,255,255,0.8);margin-bottom:10px;line-height:1.5;}
+.clarify-q textarea{min-height:72px;}
+.success-box{background:rgba(107,210,130,0.1);border:1px solid rgba(107,210,130,0.25);border-radius:12px;padding:20px;text-align:center;}
+.success-box h3{font-size:16px;font-weight:700;color:#6bd282;margin-bottom:6px;}
+.success-box p{font-size:13px;color:rgba(255,255,255,0.5);}
+/* CHAT */
+.chat-layout{display:grid;grid-template-columns:240px 1fr;gap:20px;height:calc(100vh - 230px);min-height:460px;}
+.chat-sidebar{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:18px;overflow-y:auto;}
+.chat-sidebar h3{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:rgba(255,255,255,0.35);margin-bottom:12px;}
+.chat-topic{font-size:12px;color:rgba(255,255,255,0.5);padding:8px 10px;border-radius:8px;cursor:pointer;transition:.15s;margin-bottom:3px;line-height:1.4;}
+.chat-topic:hover{background:rgba(255,255,255,0.06);color:#fff;}
+.chat-main{display:flex;flex-direction:column;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px;overflow:hidden;}
+.chat-header{padding:14px 18px;border-bottom:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;gap:12px;}
+.chat-avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#FF2847,#3E2566);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;}
+.chat-header-info h4{font-size:13px;font-weight:600;margin-bottom:2px;}
+.chat-header-info p{font-size:11px;color:rgba(255,255,255,0.4);}
+.chat-messages{flex:1;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:12px;}
+.msg{max-width:76%;font-size:13px;line-height:1.65;padding:11px 15px;border-radius:14px;}
+.msg.bot{background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.88);align-self:flex-start;border-bottom-left-radius:4px;}
+.msg.user{background:linear-gradient(135deg,#FF2847,#3E2566);color:#fff;align-self:flex-end;border-bottom-right-radius:4px;}
+.msg-loading{display:flex;gap:5px;align-items:center;padding:11px 15px;background:rgba(255,255,255,0.06);border-radius:14px;border-bottom-left-radius:4px;align-self:flex-start;}
+.dot-anim{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.4);animation:bounce .9s infinite;}
+.dot-anim:nth-child(2){animation-delay:.2s;}
+.dot-anim:nth-child(3){animation-delay:.4s;}
+@keyframes bounce{0%,80%,100%{transform:scale(0.8);opacity:.5;}40%{transform:scale(1.2);opacity:1;}}
+.chat-input-area{padding:12px 14px;border-top:1px solid rgba(255,255,255,0.07);display:flex;gap:10px;align-items:flex-end;}
+.chat-input{flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:#fff;font-family:'Montserrat',sans-serif;font-size:13px;padding:10px 14px;border-radius:12px;outline:none;resize:none;min-height:42px;max-height:100px;}
+.chat-input:focus{border-color:rgba(255,40,71,0.4);}
+.chat-send{background:linear-gradient(135deg,#FF2847,#3E2566);border:none;color:#fff;width:40px;height:40px;border-radius:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.chat-send svg{width:15px;height:15px;}
+/* ADMIN */
+.admin-lock{display:flex;align-items:center;justify-content:center;min-height:60vh;}
+.lock-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:40px;max-width:360px;width:100%;text-align:center;}
+.lock-icon{font-size:32px;margin-bottom:16px;}
+.lock-card h3{font-size:17px;font-weight:700;margin-bottom:6px;}
+.lock-card p{font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:24px;}
+.lock-err{font-size:12px;color:#FF6B80;margin-top:10px;display:none;}
+.admin-table{width:100%;border-collapse:collapse;font-size:13px;}
+.admin-table th{text-align:left;padding:10px 14px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:rgba(255,255,255,0.35);border-bottom:1px solid rgba(255,255,255,0.07);}
+.admin-table td{padding:12px 14px;border-bottom:1px solid rgba(255,255,255,0.05);vertical-align:middle;}
+.admin-table tr:hover td{background:rgba(255,255,255,0.02);}
+.admin-wrap{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px;overflow:hidden;margin-bottom:28px;}
+.add-form{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:24px;margin-bottom:24px;}
+.add-form h3{font-size:15px;font-weight:700;margin-bottom:18px;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:200;align-items:center;justify-content:center;}
+.modal-overlay.open{display:flex;}
+.modal{background:#12122a;border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:32px;max-width:480px;width:90%;}
+.modal-close{float:right;background:rgba(255,255,255,0.07);border:none;color:#fff;font-family:'Montserrat',sans-serif;font-size:12px;padding:7px 16px;border-radius:8px;cursor:pointer;}
+.badge-new{background:linear-gradient(90deg,#FF2847,#6B2D60);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:2px 7px;border-radius:6px;margin-left:6px;vertical-align:middle;}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="logo">Bold Research</span>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showPanel('biblioteca',this)">Biblioteca</button>
+    <button class="nav-tab" onclick="showPanel('solicitar',this)">Solicitar investigación</button>
+    <button class="nav-tab" onclick="showPanel('chat',this)">Asistente IA <span class="badge-new">Beta</span></button>
+    <button class="nav-tab admin-tab" onclick="showPanel('admin',this)">⚙ Admin</button>
+  </div>
+</nav>
+
+<!-- BIBLIOTECA -->
+<div id="biblioteca" class="panel active">
+  <div class="hero">
+    <h1>Centro de Investigación Bold</h1>
+    <p>Bienvenido al repositorio de investigación de usuarios de Bold. Este espacio centraliza todos los hallazgos clave de nuestras investigaciones sobre los diferentes productos de la compañía.</p>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-n" id="stat-total">0</div><div class="stat-l">Investigaciones</div></div>
+      <div class="stat"><div class="stat-n" id="stat-done">0</div><div class="stat-l">Terminadas</div></div>
+      <div class="stat"><div class="stat-n" id="stat-pending">0</div><div class="stat-l">En progreso</div></div>
+    </div>
+  </div>
+  <div class="filter-bar">
+    <input class="search-bar" placeholder="Buscar investigación..." oninput="applyFilters()"/>
+    <div class="divider-v"></div>
+    <div class="filter-group">
+      <span class="group-label">Estado</span>
+      <button class="filter-btn" id="btn-done" onclick="toggleStatus('done')">Terminadas</button>
+      <button class="filter-btn" id="btn-pending" onclick="toggleStatus('pending')">En progreso</button>
+    </div>
+    <div class="divider-v"></div>
+    <div class="filter-group">
+      <span class="group-label">Vertical</span>
+      <button class="filter-btn" id="btn-Payments" onclick="toggleVertical('Payments')">Payments</button>
+      <button class="filter-btn" id="btn-Banking" onclick="toggleVertical('Banking')">Banking</button>
+      <button class="filter-btn" id="btn-Usuarios" onclick="toggleVertical('Usuarios')">Usuarios</button>
+      <button class="filter-btn" id="btn-Software" onclick="toggleVertical('Software')">Software</button>
+      <button class="filter-btn" id="btn-Producto" onclick="toggleVertical('Producto')">Producto</button>
+    </div>
+  </div>
+  <div id="section-done">
+    <div class="section-header">
+      <h2>Terminadas</h2>
+      <span class="count-badge badge-done" id="count-done">0</span>
+    </div>
+    <div class="grid" id="grid-done"></div>
+  </div>
+  <div id="section-pending">
+    <div class="section-header">
+      <h2>En progreso</h2>
+      <span class="count-badge badge-pending" id="count-pending">0</span>
+    </div>
+    <div class="grid" id="grid-pending"></div>
+  </div>
+</div>
+
+<!-- SOLICITAR -->
+<div id="solicitar" class="panel">
+  <div class="section-title">Solicitar nueva investigación</div>
+  <div class="section-sub">Comparte el brief y responde las preguntas de clarificación. El equipo de research recibirá todo listo.</div>
+  <div class="step-indicator">
+    <div class="step"><div class="step-dot active" id="sd1">1</div><span class="step-label active" id="sl1">Brief</span></div>
+    <div class="step-line"></div>
+    <div class="step"><div class="step-dot pending-dot" id="sd2">2</div><span class="step-label" id="sl2">Clarificaciones</span></div>
+    <div class="step-line"></div>
+    <div class="step"><div class="step-dot pending-dot" id="sd3">3</div><span class="step-label" id="sl3">Enviado</span></div>
+  </div>
+  <div class="form-wrap">
+    <!-- Step 1: Brief -->
+    <div id="step1" class="form-card">
+      <div class="form-row"><label>Tu nombre</label><input type="text" id="f-nombre" placeholder="Ej: María García"/></div>
+      <div class="form-row"><label>Producto o servicio a investigar</label><input type="text" id="f-producto" placeholder="Ej: Datáfono Bold Pro, Cuenta Digital..."/></div>
+      <div class="form-row"><label>Segmento objetivo</label><input type="text" id="f-segmento" placeholder="Ej: comerciantes informales, jóvenes 18-25..."/></div>
+      <div class="form-row"><label>Objetivo de la investigación</label><textarea id="f-objetivo" placeholder="¿Qué quieres entender o descubrir con esta investigación?"></textarea></div>
+      <div class="form-row"><label>Contexto adicional (opcional)</label><textarea id="f-contexto" placeholder="¿Hay investigaciones previas? ¿Alguna restricción de tiempo?"></textarea></div>
+      <div class="btn-row"><button class="btn-primary" onclick="generateClarifications()">Continuar →</button></div>
+    </div>
+    <!-- Step 2: Clarificaciones dinámicas -->
+    <div id="step2" class="form-card" style="display:none;">
+      <p style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:20px;line-height:1.6;">Para asegurarnos de generar las preguntas correctas, responde lo siguiente:</p>
+      <div id="clarify-container"></div>
+      <div class="btn-row">
+        <button class="btn-secondary" onclick="goSolicitarStep(1)">← Volver</button>
+        <button class="btn-primary" id="btn-enviar" onclick="submitBrief()">Enviar solicitud ↗</button>
+      </div>
+    </div>
+    <!-- Step 3: Confirmación -->
+    <div id="step3" class="form-card" style="display:none;">
+      <div class="success-box">
+        <h3>✓ Solicitud enviada</h3>
+        <p>El equipo de research recibió tu brief y las clarificaciones. En breve recibirás las preguntas de la investigación para revisar.</p>
+      </div>
+      <div class="btn-row" style="margin-top:20px;">
+        <button class="btn-secondary" onclick="resetSolicitar()">Nueva solicitud</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHAT -->
+<div id="chat" class="panel">
+  <div class="section-title">Asistente de Investigación</div>
+  <div class="section-sub">Pregúntale sobre cualquier estudio realizado en Bold.</div>
+  <div class="chat-layout">
+    <div class="chat-sidebar">
+      <h3>Preguntas frecuentes</h3>
+      <div class="chat-topic" onclick="askTopic('¿Qué sabemos sobre el segmento de comerciantes informales?')">Comerciantes informales</div>
+      <div class="chat-topic" onclick="askTopic('¿Cuáles son los principales pain points del onboarding?')">Pain points onboarding</div>
+      <div class="chat-topic" onclick="askTopic('¿Qué dicen los usuarios sobre las tarifas de Bold?')">Percepción de tarifas</div>
+      <div class="chat-topic" onclick="askTopic('¿Cuál es el NPS promedio de los últimos estudios?')">NPS promedio</div>
+      <div class="chat-topic" onclick="askTopic('¿Qué investigaciones hay en la vertical de Banking?')">Vertical Banking</div>
+      <div class="chat-topic" onclick="askTopic('¿Qué nos diferencia de la competencia según los usuarios?')">Diferenciación</div>
+      <div class="chat-topic" onclick="askTopic('¿Cuál es el perfil del usuario de Cuenta Digital?')">Perfil Cuenta Digital</div>
+      <div class="chat-topic" onclick="askTopic('¿Qué investigaciones están en progreso actualmente?')">En progreso</div>
+    </div>
+    <div class="chat-main">
+      <div class="chat-header">
+        <div class="chat-avatar">B</div>
+        <div class="chat-header-info">
+          <h4>Bold Research AI</h4>
+          <p>Entrenado con todas las investigaciones · Responde al instante</p>
+        </div>
+      </div>
+      <div class="chat-messages" id="chat-messages">
+        <div class="msg bot">¡Hola! Soy el asistente de investigación de Bold. Puedo responderte preguntas sobre cualquier estudio en Payments, Banking, Usuarios, Software o Producto. ¿Qué quieres saber?</div>
+      </div>
+      <div class="chat-input-area">
+        <textarea class="chat-input" id="chat-input" placeholder="Pregunta sobre cualquier investigación..." rows="1" onkeydown="handleKey(event)"></textarea>
+        <button class="chat-send" onclick="sendChat()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN -->
+<div id="admin" class="panel">
+  <div id="admin-lock" class="admin-lock">
+    <div class="lock-card">
+      <div class="lock-icon">🔒</div>
+      <h3>Acceso restringido</h3>
+      <p>Esta sección es solo para el equipo de research. Ingresa la contraseña para continuar.</p>
+      <div class="form-row"><input type="password" id="admin-pass" placeholder="Contraseña" onkeydown="if(event.key==='Enter')checkPass()"/></div>
+      <button class="btn-primary" style="width:100%" onclick="checkPass()">Entrar</button>
+      <div class="lock-err" id="lock-err">Contraseña incorrecta</div>
+    </div>
+  </div>
+  <div id="admin-content" style="display:none;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;">
+      <div><div class="section-title">Administrar investigaciones</div><div class="section-sub" style="margin-bottom:0;">Agrega, edita o elimina investigaciones del repositorio.</div></div>
+      <button class="btn-secondary" onclick="lockAdmin()">Cerrar sesión</button>
+    </div>
+    <!-- Add form -->
+    <div class="add-form">
+      <h3 id="form-mode-title">Agregar investigación</h3>
+      <div class="form-grid">
+        <div class="form-row"><label>Título</label><input type="text" id="a-titulo" placeholder="Título de la investigación"/></div>
+        <div class="form-row"><label>Vertical</label>
+          <select id="a-vertical">
+            <option value="">Seleccionar...</option>
+            <option>Payments</option><option>Banking</option><option>Usuarios</option><option>Software</option><option>Producto</option>
+          </select>
+        </div>
+        <div class="form-row" style="grid-column:1/-1"><label>Descripción</label><textarea id="a-desc" style="min-height:72px;" placeholder="Breve descripción de la investigación"></textarea></div>
+        <div class="form-row"><label>Estado</label>
+          <select id="a-status">
+            <option value="done">Terminada</option>
+            <option value="pending">En progreso</option>
+          </select>
+        </div>
+        <div class="form-row"><label>Fecha</label><input type="text" id="a-fecha" placeholder="Ej: Mar 2025 / En curso"/></div>
+        <div class="form-row"><label>Usuarios encuestados</label><input type="text" id="a-usuarios" placeholder="0 si no aplica"/></div>
+        <div class="form-row"><label>Link presentación</label><input type="text" id="a-link" placeholder="https://..."/></div>
+      </div>
+      <div class="btn-row">
+        <button class="btn-primary" id="btn-save" onclick="saveInvestigation()">Guardar</button>
+        <button class="btn-secondary" id="btn-cancel-edit" style="display:none" onclick="cancelEdit()">Cancelar</button>
+      </div>
+    </div>
+    <!-- Table -->
+    <div class="admin-wrap">
+      <table class="admin-table">
+        <thead><tr><th>Título</th><th>Vertical</th><th>Estado</th><th>Fecha</th><th>Acciones</th></tr></thead>
+        <tbody id="admin-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕ Cerrar</button>
+    <div id="modal-tags" style="margin-top:12px;margin-bottom:12px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;"></div>
+    <h3 id="modal-title" style="margin-bottom:10px;font-size:17px;font-weight:700;"></h3>
+    <p id="modal-desc" style="font-size:13px;color:rgba(255,255,255,0.55);line-height:1.6;margin-bottom:8px;"></p>
+    <p id="modal-meta" style="font-size:11px;color:rgba(255,255,255,0.3);margin-bottom:22px;"></p>
+    <div id="modal-link-wrap"></div>
+  </div>
+</div>
+
+<script>
+const ADMIN_PASSWORD = 'bold2025';
+const vClass = {Payments:'v-payments',Banking:'v-banking',Usuarios:'v-usuarios',Software:'v-software',Producto:'v-producto'};
+let data = [];
+let editingIndex = null;
+let statusFilter = null;
+let verticalFilter = null;
+
+// STORAGE
+async function saveData(){
+  try{ await window.storage.set('investigations', JSON.stringify(data)); }catch(e){}
+}
+async function loadData(){
+  try{
+    const r = await window.storage.get('investigations');
+    if(r && r.value) data = JSON.parse(r.value);
+  }catch(e){}
+  if(!data.length) data = [
+    {title:"Percepción de tarifas en comerciantes PYME",desc:"Cómo los pequeños comerciantes perciben y comparan las tarifas de Bold frente a la competencia.",vertical:"Payments",status:"done",date:"Feb 2025",users:42,link:""},
+    {title:"Benchmark datáfonos Bold vs competidores",desc:"Análisis comparativo de funcionalidades UX y precios de los principales datáfonos en Colombia.",vertical:"Payments",status:"done",date:"Ene 2025",users:0,link:""},
+    {title:"Fricción en el proceso de cobro presencial",desc:"Investigación sobre los momentos de fricción al usar el datáfono en el punto de venta.",vertical:"Payments",status:"pending",date:"En curso",users:0,link:""},
+    {title:"NPS y satisfacción Cuenta Digital Q1",desc:"Medición trimestral de NPS y drivers de satisfacción entre usuarios activos de Cuenta Digital.",vertical:"Banking",status:"done",date:"Mar 2025",users:380,link:""},
+    {title:"Necesidades financieras vendedores informales",desc:"Hábitos financieros y necesidades no cubiertas en el segmento de economía informal.",vertical:"Banking",status:"done",date:"Dic 2024",users:22,link:""},
+    {title:"Experiencia de onboarding nuevos comerciantes",desc:"Entrevistas sobre el proceso de activación y primeros días de uso del datáfono.",vertical:"Usuarios",status:"done",date:"Mar 2025",users:15,link:""},
+    {title:"Motivaciones de abandono del registro",desc:"Por qué los prospectos no completan el registro y qué los llevaría a retomarlo.",vertical:"Usuarios",status:"done",date:"Sep 2024",users:89,link:""},
+    {title:"Benchmark pasarelas de pago e-commerce",desc:"Comparativa de integraciones tarifas y experiencia de desarrolladores en pasarelas.",vertical:"Software",status:"done",date:"Oct 2024",users:0,link:""},
+    {title:"Usabilidad del dashboard de comerciantes",desc:"Pruebas de usabilidad del panel administrativo con comerciantes activos.",vertical:"Software",status:"done",date:"Ago 2024",users:18,link:""},
+    {title:"Validación de nueva funcionalidad de reportes",desc:"Test de concepto sobre el módulo de reportes y analítica para comerciantes.",vertical:"Producto",status:"done",date:"Feb 2025",users:24,link:""},
+    {title:"Priorización de features roadmap H1 2025",desc:"Validar el orden de prioridad del roadmap con usuarios reales.",vertical:"Producto",status:"pending",date:"En curso",users:0,link:""},
+  ];
+  refreshStats();
+  applyFilters();
+}
+
+function refreshStats(){
+  document.getElementById('stat-total').textContent = data.length;
+  document.getElementById('stat-done').textContent = data.filter(d=>d.status==='done').length;
+  document.getElementById('stat-pending').textContent = data.filter(d=>d.status==='pending').length;
+}
+
+// FILTERS
+function applyFilters(){
+  const q = document.querySelector('.search-bar').value.toLowerCase();
+  let filtered = data.map((d,i)=>({...d,_i:i}));
+  if(statusFilter) filtered = filtered.filter(d=>d.status===statusFilter);
+  if(verticalFilter) filtered = filtered.filter(d=>d.vertical===verticalFilter);
+  if(q) filtered = filtered.filter(d=>d.title.toLowerCase().includes(q)||d.desc.toLowerCase().includes(q)||d.vertical.toLowerCase().includes(q));
+  const done = filtered.filter(d=>d.status==='done');
+  const pending = filtered.filter(d=>d.status==='pending');
+  renderGrid('grid-done', done, 'done');
+  renderGrid('grid-pending', pending, 'pending');
+  document.getElementById('count-done').textContent = done.length;
+  document.getElementById('count-pending').textContent = pending.length;
+  document.getElementById('section-done').style.display = statusFilter==='pending'?'none':'block';
+  document.getElementById('section-pending').style.display = statusFilter==='done'?'none':'block';
+}
+
+function renderGrid(id, items, type){
+  const g = document.getElementById(id);
+  if(!items.length){g.innerHTML='<div class="empty">Sin resultados</div>';return;}
+  g.innerHTML = items.map(d=>`
+    <div class="card ${type}" onclick="openModal(${d._i})">
+      <span class="vertical-tag ${vClass[d.vertical]||''}">${d.vertical}</span>
+      <h3>${d.title}</h3>
+      <p>${d.desc}</p>
+      <div class="card-footer">
+        <span class="card-date">${d.date}${d.users>0?' · '+d.users+' usuarios':''}</span>
+        <div class="card-meta-row"><div class="status-dot ${type==='done'?'dot-done':'dot-pending'}"></div></div>
+      </div>
+    </div>`).join('');
+}
+
+function toggleStatus(s){
+  statusFilter = statusFilter===s?null:s;
+  document.getElementById('btn-done').className='filter-btn'+(statusFilter==='done'?' active-status':'');
+  document.getElementById('btn-pending').className='filter-btn'+(statusFilter==='pending'?' active-pending':'');
+  applyFilters();
+}
+function toggleVertical(v){
+  verticalFilter = verticalFilter===v?null:v;
+  ['Payments','Banking','Usuarios','Software','Producto'].forEach(vt=>{
+    document.getElementById('btn-'+vt).className='filter-btn'+(verticalFilter===vt?' active-vertical':'');
+  });
+  applyFilters();
+}
+
+function openModal(i){
+  const d = data[i];
+  document.getElementById('modal-tags').innerHTML=`<span class="vertical-tag ${vClass[d.vertical]||''}">${d.vertical}</span><span style="font-size:11px;padding:3px 10px;border-radius:10px;font-weight:600;${d.status==='done'?'background:rgba(107,210,130,0.15);color:#6bd282':'background:rgba(255,180,50,0.13);color:#ffb432'}">${d.status==='done'?'Terminada':'En progreso'}</span>`;
+  document.getElementById('modal-title').textContent=d.title;
+  document.getElementById('modal-desc').textContent=d.desc;
+  document.getElementById('modal-meta').textContent=`${d.date}${d.users>0?' · '+d.users+' usuarios encuestados':''}`;
+  document.getElementById('modal-link-wrap').innerHTML = d.link?`<a href="${d.link}" target="_blank" style="background:linear-gradient(135deg,#FF2847,#3E2566);color:#fff;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;padding:11px 22px;border-radius:12px;text-decoration:none;display:inline-block;">Ver presentación ↗</a>`:'';
+  document.getElementById('modal').classList.add('open');
+}
+function closeModal(){document.getElementById('modal').classList.remove('open');}
+
+// SOLICITAR
+let clarifyQuestions = [];
+
+async function generateClarifications(){
+  const nombre = document.getElementById('f-nombre').value.trim();
+  const prod = document.getElementById('f-producto').value.trim();
+  const seg = document.getElementById('f-segmento').value.trim();
+  const obj = document.getElementById('f-objetivo').value.trim();
+  if(!nombre||!prod||!seg||!obj){alert('Por favor completa todos los campos obligatorios.');return;}
+  goSolicitarStep(2);
+  const container = document.getElementById('clarify-container');
+  container.innerHTML='<div class="empty">Generando preguntas de clarificación...</div>';
+  document.getElementById('btn-enviar').disabled = true;
+  const prompt = `Eres experto en investigación de mercado para Bold, fintech colombiana de pagos. 
+Alguien solicita una nueva investigación con este brief:
+- Producto: ${prod}
+- Segmento: ${seg}
+- Objetivo: ${obj}
+- Contexto: ${document.getElementById('f-contexto').value||'N/A'}
+
+Genera entre 3 y 5 preguntas de clarificación ESPECÍFICAS para este brief concreto. Las preguntas deben ayudar a entender mejor el alcance, los decisores, las hipótesis previas y los criterios de éxito de ESTA investigación en particular. No hagas preguntas genéricas.
+
+Responde SOLO en JSON así (sin markdown, sin texto extra):
+[{"pregunta":"..."},{"pregunta":"..."},{"pregunta":"..."}]`;
+  try{
+    const r = await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:600,messages:[{role:'user',content:prompt}]})});
+    const d = await r.json();
+    const text = d.content?.map(b=>b.text||'').join('')||'[]';
+    clarifyQuestions = JSON.parse(text.replace(/```json|```/g,'').trim());
+    container.innerHTML = clarifyQuestions.map((q,i)=>`
+      <div class="clarify-q">
+        <p>${i+1}. ${q.pregunta}</p>
+        <textarea id="cq-${i}" placeholder="Tu respuesta..."></textarea>
+      </div>`).join('');
+    document.getElementById('btn-enviar').disabled = false;
+  }catch(e){
+    container.innerHTML='<div class="empty">Error generando preguntas. Intenta de nuevo.</div>';
+    document.getElementById('btn-enviar').disabled = false;
+  }
+}
+
+async function submitBrief(){
+  const answers = clarifyQuestions.map((q,i)=>({pregunta:q.pregunta,respuesta:document.getElementById('cq-'+i)?.value||'Sin respuesta'}));
+  const brief = {
+    nombre: document.getElementById('f-nombre').value,
+    producto: document.getElementById('f-producto').value,
+    segmento: document.getElementById('f-segmento').value,
+    objetivo: document.getElementById('f-objetivo').value,
+    contexto: document.getElementById('f-contexto').value,
+    clarificaciones: answers
+  };
+  document.getElementById('btn-enviar').disabled = true;
+  document.getElementById('btn-enviar').textContent = 'Enviando...';
+
+  const briefText = `NUEVA SOLICITUD DE INVESTIGACIÓN\n\nSolicitante: ${brief.nombre}\nProducto: ${brief.producto}\nSegmento: ${brief.segmento}\nObjetivo: ${brief.objetivo}\nContexto: ${brief.contexto||'N/A'}\n\nCLARIFICACIONES:\n${answers.map((a,i)=>`${i+1}. ${a.pregunta}\n→ ${a.respuesta}`).join('\n\n')}`;
+
+  const genPrompt = `Eres experto en investigación de mercado para Bold, fintech colombiana de pagos. Con base en este brief y las clarificaciones, genera entre 15 y 20 preguntas de encuesta listas para enviar a usuarios reales.\n\n${briefText}\n\nInstrucciones: mezcla cerradas (Likert 1-5, opción múltiple, NPS) con 2-3 abiertas. Indica el tipo entre paréntesis. Ordena de menor a mayor fricción. Solo las preguntas numeradas, sin introducción ni texto extra.`;
+
+  try{
+    const r = await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:genPrompt}]})});
+    const d = await r.json();
+    const questions = d.content?.map(b=>b.text||'').join('')||'';
+    const emailBody = `${briefText}\n\n---\nPREGUNTAS GENERADAS PARA LA AGENCIA:\n\n${questions}`;
+    await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:200,mcp_servers:[{type:'url',url:'https://gmail.mcp.claude.com/mcp',name:'gmail-mcp'}],messages:[{role:'user',content:`Envía un email a antonio.ordonez@bold.co con asunto "Nueva solicitud de investigación: ${brief.producto}" y este cuerpo:\n${emailBody}`}]})});
+  }catch(e){}
+
+  goSolicitarStep(3);
+}
+
+function goSolicitarStep(n){
+  [1,2,3].forEach(i=>{
+    document.getElementById('step'+i).style.display=i===n?'block':'none';
+    document.getElementById('sd'+i).className='step-dot '+(i<n?'done':i===n?'active':'pending-dot');
+    document.getElementById('sl'+i).className='step-label'+(i===n?' active':'');
+  });
+}
+
+function resetSolicitar(){
+  ['f-nombre','f-producto','f-segmento','f-objetivo','f-contexto'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  clarifyQuestions=[];
+  document.getElementById('btn-enviar').disabled=false;
+  document.getElementById('btn-enviar').textContent='Enviar solicitud ↗';
+  goSolicitarStep(1);
+}
+
+// ADMIN
+function checkPass(){
+  const p = document.getElementById('admin-pass').value;
+  if(p===ADMIN_PASSWORD){
+    document.getElementById('admin-lock').style.display='none';
+    document.getElementById('admin-content').style.display='block';
+    renderAdminTable();
+  } else {
+    document.getElementById('lock-err').style.display='block';
+    document.getElementById('admin-pass').value='';
+  }
+}
+function lockAdmin(){
+  document.getElementById('admin-lock').style.display='flex';
+  document.getElementById('admin-content').style.display='none';
+  document.getElementById('admin-pass').value='';
+  document.getElementById('lock-err').style.display='none';
+}
+
+function renderAdminTable(){
+  const tb = document.getElementById('admin-tbody');
+  tb.innerHTML = data.map((d,i)=>`
+    <tr>
+      <td style="font-weight:500;max-width:260px;">${d.title}</td>
+      <td><span class="vertical-tag ${vClass[d.vertical]||''}" style="margin:0;">${d.vertical}</span></td>
+      <td><span style="font-size:11px;font-weight:600;${d.status==='done'?'color:#6bd282':'color:#ffb432'}">${d.status==='done'?'Terminada':'En progreso'}</span></td>
+      <td style="color:rgba(255,255,255,0.45);font-size:12px;">${d.date}</td>
+      <td><div style="display:flex;gap:6px;">
+        <button class="btn-secondary" style="font-size:11px;padding:5px 12px;" onclick="editInvestigation(${i})">Editar</button>
+        <button class="btn-danger" onclick="deleteInvestigation(${i})">Eliminar</button>
+      </div></td>
+    </tr>`).join('');
+}
+
+function saveInvestigation(){
+  const titulo = document.getElementById('a-titulo').value.trim();
+  const vertical = document.getElementById('a-vertical').value;
+  const desc = document.getElementById('a-desc').value.trim();
+  const status = document.getElementById('a-status').value;
+  const fecha = document.getElementById('a-fecha').value.trim();
+  const users = parseInt(document.getElementById('a-usuarios').value)||0;
+  const link = document.getElementById('a-link').value.trim();
+  if(!titulo||!vertical||!desc){alert('Completa título, vertical y descripción.');return;}
+  const item = {title:titulo,vertical,desc,status,date:fecha||'Sin fecha',users,link};
+  if(editingIndex!==null){data[editingIndex]=item;}
+  else{data.push(item);}
+  saveData();
+  refreshStats();
+  applyFilters();
+  renderAdminTable();
+  cancelEdit();
+}
+
+function editInvestigation(i){
+  const d = data[i];
+  editingIndex = i;
+  document.getElementById('a-titulo').value=d.title;
+  document.getElementById('a-vertical').value=d.vertical;
+  document.getElementById('a-desc').value=d.desc;
+  document.getElementById('a-status').value=d.status;
+  document.getElementById('a-fecha').value=d.date;
+  document.getElementById('a-usuarios').value=d.users;
+  document.getElementById('a-link').value=d.link||'';
+  document.getElementById('form-mode-title').textContent='Editar investigación';
+  document.getElementById('btn-cancel-edit').style.display='inline-block';
+  document.getElementById('add-form')?.scrollIntoView({behavior:'smooth'});
+}
+
+function cancelEdit(){
+  editingIndex=null;
+  ['a-titulo','a-desc','a-fecha','a-usuarios','a-link'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('a-vertical').value='';
+  document.getElementById('a-status').value='done';
+  document.getElementById('form-mode-title').textContent='Agregar investigación';
+  document.getElementById('btn-cancel-edit').style.display='none';
+}
+
+function deleteInvestigation(i){
+  if(!confirm(`¿Eliminar "${data[i].title}"?`))return;
+  data.splice(i,1);
+  saveData();
+  refreshStats();
+  applyFilters();
+  renderAdminTable();
+}
+
+// CHAT
+const SYSTEM_PROMPT=`Eres el asistente de investigación de mercado de Bold, fintech colombiana líder en pagos. Conoces todos los estudios organizados en 5 verticales: Payments, Banking, Usuarios, Software y Producto. Respondes preguntas sobre hallazgos, NPS, pain points, benchmarks e insights. Eres conciso y directo.`;
+let chatHistory=[];
+async function sendChat(){
+  const input=document.getElementById('chat-input');
+  const msg=input.value.trim();
+  if(!msg)return;
+  input.value='';
+  addMsg('user',msg);
+  chatHistory.push({role:'user',content:msg});
+  const loading=addLoading();
+  try{
+    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:600,system:SYSTEM_PROMPT,messages:chatHistory})});
+    const d=await r.json();
+    const reply=d.content?.map(b=>b.text||'').join('')||'Sin respuesta.';
+    chatHistory.push({role:'assistant',content:reply});
+    loading.remove();
+    addMsg('bot',reply);
+  }catch(e){loading.remove();addMsg('bot','Error de conexión.');}
+}
+function addMsg(type,text){
+  const c=document.getElementById('chat-messages');
+  const m=document.createElement('div');
+  m.className='msg '+type;m.textContent=text;
+  c.appendChild(m);c.scrollTop=c.scrollHeight;return m;
+}
+function addLoading(){
+  const c=document.getElementById('chat-messages');
+  const m=document.createElement('div');
+  m.className='msg-loading';
+  m.innerHTML='<div class="dot-anim"></div><div class="dot-anim"></div><div class="dot-anim"></div>';
+  c.appendChild(m);c.scrollTop=c.scrollHeight;return m;
+}
+function askTopic(q){document.getElementById('chat-input').value=q;sendChat();}
+function handleKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendChat();}}
+
+function showPanel(id,el){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  el.classList.add('active');
+}
+
+loadData();
+</script>
+</body>
+</html>
