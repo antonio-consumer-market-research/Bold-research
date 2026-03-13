@@ -314,6 +314,7 @@ textarea::placeholder,input::placeholder{color:rgba(255,255,255,0.22);}
       <p>Agrega los hallazgos clave de cada investigación. La IA del asistente usará esta información para responder con datos reales de tus estudios.</p>
       <div class="btn-row" style="margin-bottom:16px;">
         <button class="btn-primary" onclick="openKbModal()">+ Agregar hallazgos</button>
+        <button class="btn-secondary" onclick="importKbFromJson()">⬆ Importar JSON</button>
       </div>
       <div id="kb-list" class="kb-list"></div>
     </div>
@@ -496,6 +497,42 @@ function openModal(i){
   document.getElementById('modal').classList.add('open');
 }
 function closeModal(){document.getElementById('modal').classList.remove('open');}
+
+// ── IMPORTAR JSON AL KB ───────────────────────────────────
+function importKbFromJson(){
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = '.json';
+  input.onchange = async e => {
+    const file = e.target.files[0];
+    if(!file) return;
+    try {
+      const text = await file.text();
+      const imported = JSON.parse(text);
+      let count = 0;
+      imported.forEach(item => {
+        if(!item.titulo || !item.content) return;
+        const exists = kbEntries.findIndex(k => k.titulo === item.titulo);
+        const entry = {
+          id: exists > -1 ? kbEntries[exists].id : Date.now().toString() + count,
+          titulo: item.titulo,
+          vertical: item.vertical || '',
+          content: item.content,
+          updated: new Date().toLocaleDateString('es-CO')
+        };
+        if(exists > -1) kbEntries[exists] = entry;
+        else kbEntries.push(entry);
+        count++;
+      });
+      await saveKb();
+      renderKbList();
+      alert(`✅ ${count} investigaciones cargadas al Knowledge Base.`);
+    } catch(e) {
+      alert('Error leyendo el archivo. Asegúrate de que sea el JSON generado por el script.');
+    }
+  };
+  input.click();
+}
 
 // ── KNOWLEDGE BASE ────────────────────────────────────────
 function openKbModal(id){
