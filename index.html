@@ -60,7 +60,6 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:18px 4
 .dot-pending{background:#ffb432;}
 .card-meta-row{display:flex;align-items:center;gap:6px;}
 .empty{text-align:center;padding:40px;color:rgba(255,255,255,0.3);font-size:13px;}
-/* FORM */
 .section-title{font-size:20px;font-weight:700;margin-bottom:6px;}
 .section-sub{font-size:13px;color:rgba(255,255,255,0.45);margin-bottom:28px;}
 .form-wrap{max-width:680px;}
@@ -87,7 +86,6 @@ textarea::placeholder,input::placeholder{color:rgba(255,255,255,0.22);}
 .btn-secondary{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.65);font-family:'Montserrat',sans-serif;font-size:13px;font-weight:500;padding:11px 22px;border-radius:12px;cursor:pointer;}
 .btn-danger{background:rgba(255,40,71,0.15);border:1px solid rgba(255,40,71,0.3);color:#FF6B80;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:500;padding:7px 14px;border-radius:8px;cursor:pointer;}
 .btn-row{display:flex;gap:10px;margin-top:6px;flex-wrap:wrap;}
-/* clarify questions */
 .clarify-q{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;margin-bottom:14px;}
 .clarify-q p{font-size:13px;color:rgba(255,255,255,0.8);margin-bottom:10px;line-height:1.5;}
 .clarify-q textarea{min-height:72px;}
@@ -97,7 +95,6 @@ textarea::placeholder,input::placeholder{color:rgba(255,255,255,0.22);}
 .success-box{background:rgba(107,210,130,0.1);border:1px solid rgba(107,210,130,0.25);border-radius:12px;padding:20px;text-align:center;}
 .success-box h3{font-size:16px;font-weight:700;color:#6bd282;margin-bottom:6px;}
 .success-box p{font-size:13px;color:rgba(255,255,255,0.5);}
-/* CHAT */
 .chat-layout{display:grid;grid-template-columns:240px 1fr;gap:20px;height:calc(100vh - 230px);min-height:460px;}
 .chat-sidebar{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:18px;overflow-y:auto;}
 .chat-sidebar h3{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:rgba(255,255,255,0.35);margin-bottom:12px;}
@@ -122,7 +119,6 @@ textarea::placeholder,input::placeholder{color:rgba(255,255,255,0.22);}
 .chat-input:focus{border-color:rgba(255,40,71,0.4);}
 .chat-send{background:linear-gradient(135deg,#FF2847,#3E2566);border:none;color:#fff;width:40px;height:40px;border-radius:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .chat-send svg{width:15px;height:15px;}
-/* ADMIN */
 .admin-lock{display:flex;align-items:center;justify-content:center;min-height:60vh;}
 .lock-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:40px;max-width:360px;width:100%;text-align:center;}
 .lock-icon{font-size:32px;margin-bottom:16px;}
@@ -137,7 +133,6 @@ textarea::placeholder,input::placeholder{color:rgba(255,255,255,0.22);}
 .add-form{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:24px;margin-bottom:24px;}
 .add-form h3{font-size:15px;font-weight:700;margin-bottom:18px;}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-/* KB */
 .kb-section{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:24px;margin-bottom:24px;}
 .kb-section h3{font-size:15px;font-weight:700;margin-bottom:6px;}
 .kb-section p{font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:18px;line-height:1.6;}
@@ -147,7 +142,6 @@ textarea::placeholder,input::placeholder{color:rgba(255,255,255,0.22);}
 .kb-item-info p{font-size:11px;color:rgba(255,255,255,0.35);}
 .kb-item-actions{display:flex;gap:6px;flex-shrink:0;}
 .kb-empty{text-align:center;padding:30px;color:rgba(255,255,255,0.3);font-size:13px;}
-/* MODAL */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:200;align-items:center;justify-content:center;}
 .modal-overlay.open{display:flex;}
 .modal{background:#12122a;border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:32px;max-width:480px;width:90%;max-height:90vh;overflow-y:auto;}
@@ -157,7 +151,6 @@ textarea::placeholder,input::placeholder{color:rgba(255,255,255,0.22);}
 </style>
 </head>
 <body>
-
 <nav>
   <span class="logo">Bold Research</span>
   <div class="nav-tabs">
@@ -168,7 +161,6 @@ textarea::placeholder,input::placeholder{color:rgba(255,255,255,0.22);}
   </div>
 </nav>
 
-<!-- BIBLIOTECA -->
 <div id="biblioteca" class="panel active">
   <div class="hero">
     <h1>Centro de Investigación Bold</h1>
@@ -198,22 +190,15 @@ textarea::placeholder,input::placeholder{color:rgba(255,255,255,0.22);}
     </div>
   </div>
   <div id="section-done">
-    <div class="section-header">
-      <h2>Terminadas</h2>
-      <span class="count-badge badge-done" id="count-done">0</span>
-    </div>
+    <div class="section-header"><h2>Terminadas</h2><span class="count-badge badge-done" id="count-done">0</span></div>
     <div class="grid" id="grid-done"></div>
   </div>
   <div id="section-pending">
-    <div class="section-header">
-      <h2>En progreso</h2>
-      <span class="count-badge badge-pending" id="count-pending">0</span>
-    </div>
+    <div class="section-header"><h2>En progreso</h2><span class="count-badge badge-pending" id="count-pending">0</span></div>
     <div class="grid" id="grid-pending"></div>
   </div>
 </div>
 
-<!-- SOLICITAR -->
 <div id="solicitar" class="panel">
   <div class="section-title">Solicitar nueva investigación</div>
   <div class="section-sub">Comparte el brief y responde las preguntas de clarificación. El equipo de research recibirá todo listo.</div>
@@ -246,14 +231,11 @@ textarea::placeholder,input::placeholder{color:rgba(255,255,255,0.22);}
         <h3>✓ Solicitud enviada</h3>
         <p>El equipo de research recibió tu brief y las clarificaciones. En breve recibirás las preguntas de la investigación para revisar.</p>
       </div>
-      <div class="btn-row" style="margin-top:20px;">
-        <button class="btn-secondary" onclick="resetSolicitar()">Nueva solicitud</button>
-      </div>
+      <div class="btn-row" style="margin-top:20px;"><button class="btn-secondary" onclick="resetSolicitar()">Nueva solicitud</button></div>
     </div>
   </div>
 </div>
 
-<!-- CHAT -->
 <div id="chat" class="panel">
   <div class="section-title">Asistente de Investigación</div>
   <div class="section-sub">Pregúntale sobre cualquier estudio realizado en Bold.</div>
@@ -290,7 +272,6 @@ textarea::placeholder,input::placeholder{color:rgba(255,255,255,0.22);}
   </div>
 </div>
 
-<!-- ADMIN -->
 <div id="admin" class="panel">
   <div id="admin-lock" class="admin-lock">
     <div class="lock-card">
@@ -307,19 +288,15 @@ textarea::placeholder,input::placeholder{color:rgba(255,255,255,0.22);}
       <div><div class="section-title">Administrar investigaciones</div><div class="section-sub" style="margin-bottom:0;">Agrega, edita, elimina investigaciones y nutre la IA con hallazgos.</div></div>
       <button class="btn-secondary" onclick="lockAdmin()">Cerrar sesión</button>
     </div>
-
-    <!-- KNOWLEDGE BASE -->
     <div class="kb-section">
       <h3>🧠 Knowledge Base — Nutrir la IA</h3>
-      <p>Agrega los hallazgos clave de cada investigación. La IA del asistente usará esta información para responder con datos reales de tus estudios.</p>
+      <p>Agrega los hallazgos clave de cada investigación. IAntonio usará esta información para responder con datos reales.</p>
       <div class="btn-row" style="margin-bottom:16px;">
         <button class="btn-primary" onclick="openKbModal()">+ Agregar hallazgos</button>
         <button class="btn-secondary" onclick="importKbFromJson()">⬆ Importar JSON</button>
       </div>
       <div id="kb-list" class="kb-list"></div>
     </div>
-
-    <!-- INVESTIGACIONES -->
     <div class="add-form">
       <h3 id="form-mode-title">Agregar investigación</h3>
       <div class="form-grid">
@@ -332,17 +309,14 @@ textarea::placeholder,input::placeholder{color:rgba(255,255,255,0.22);}
         </div>
         <div class="form-row" style="grid-column:1/-1"><label>Descripción</label><textarea id="a-desc" style="min-height:72px;" placeholder="Breve descripción de la investigación"></textarea></div>
         <div class="form-row"><label>Estado</label>
-          <select id="a-status">
-            <option value="done">Terminada</option>
-            <option value="pending">En progreso</option>
-          </select>
+          <select id="a-status"><option value="done">Terminada</option><option value="pending">En progreso</option></select>
         </div>
         <div class="form-row"><label>Fecha</label><input type="text" id="a-fecha" placeholder="Ej: Mar 2025 / En curso"/></div>
         <div class="form-row"><label>Usuarios encuestados</label><input type="text" id="a-usuarios" placeholder="0 si no aplica"/></div>
         <div class="form-row"><label>Link presentación</label><input type="text" id="a-link" placeholder="https://..."/></div>
       </div>
       <div class="btn-row">
-        <button class="btn-primary" id="btn-save" onclick="saveInvestigation()">Guardar</button>
+        <button class="btn-primary" onclick="saveInvestigation()">Guardar</button>
         <button class="btn-secondary" id="btn-cancel-edit" style="display:none" onclick="cancelEdit()">Cancelar</button>
       </div>
     </div>
@@ -355,7 +329,6 @@ textarea::placeholder,input::placeholder{color:rgba(255,255,255,0.22);}
   </div>
 </div>
 
-<!-- MODAL investigación -->
 <div class="modal-overlay" id="modal">
   <div class="modal">
     <button class="modal-close" onclick="closeModal()">✕ Cerrar</button>
@@ -367,7 +340,6 @@ textarea::placeholder,input::placeholder{color:rgba(255,255,255,0.22);}
   </div>
 </div>
 
-<!-- MODAL KB -->
 <div class="modal-overlay" id="kb-modal">
   <div class="modal modal-wide">
     <button class="modal-close" onclick="closeKbModal()">✕ Cerrar</button>
@@ -382,7 +354,7 @@ textarea::placeholder,input::placeholder{color:rgba(255,255,255,0.22);}
     </div>
     <div class="form-row">
       <label>Hallazgos y conclusiones clave</label>
-      <textarea id="kb-content" style="min-height:200px;" placeholder="Pega aquí los hallazgos principales, datos numéricos, quotes de usuarios, conclusiones, recomendaciones... Cuanto más detalle, mejor responderá la IA."></textarea>
+      <textarea id="kb-content" style="min-height:200px;" placeholder="Pega aquí los hallazgos principales, datos numéricos, quotes de usuarios, conclusiones, recomendaciones..."></textarea>
     </div>
     <input type="hidden" id="kb-edit-id" value=""/>
     <div class="btn-row">
@@ -394,22 +366,52 @@ textarea::placeholder,input::placeholder{color:rgba(255,255,255,0.22);}
 
 <script>
 const ADMIN_PASSWORD = 'bold2025';
-const API_URL = '/api/chat'; // ← Proxy Vercel, no llama directo a Anthropic
+const API_URL = '/api/chat';
 const vClass = {Payments:'v-payments',Banking:'v-banking',Usuarios:'v-usuarios',Software:'v-software',Producto:'v-producto'};
+
+const DEFAULT_DATA = [
+  {title:"User Persona: Tarjeta Débito y Tarjeta Crédito",desc:"Cuál es la percepción, uso y nivel de entendimiento de la tarjeta débito Business Mastercard de Bold.",vertical:"Payments",status:"done",date:"Dic 2025",users:0,link:"https://docs.google.com/presentation/d/1wJIU-RYA7SByVAP75HHyqsH30QrkGRQaZM6S4lyjPNs/edit"},
+  {title:"Defining QR Bold",desc:"Entender el ambiente competitivo y el usuario de QR.",vertical:"Payments",status:"done",date:"Ago 2025",users:0,link:"https://docs.google.com/presentation/d/1-qPquJnpztI6-PU-CRiNyU-LM5vBY-Zqn1FyfN8f9Jg/edit"},
+  {title:"Activación Canal Inbound: Datáfonos",desc:"Entender el proceso interno de activación y encontrar patrones, dolores y frustraciones.",vertical:"Payments",status:"done",date:"Ene 2025",users:0,link:"https://docs.google.com/presentation/d/1Kr2dJmpc3MPpOz-GWTmd3K1TUCitMXmQvW1uSpx63us/edit"},
+  {title:"Sono QR",desc:"Percepción del Sono QR dividido por segmentos de usuarios.",vertical:"Payments",status:"done",date:"Oct 2025",users:0,link:"https://docs.google.com/presentation/d/1pA91et--_l4nSIXcqoFwbavx0i2S0SIy6g8kt7buy3E/edit"},
+  {title:"User Persona: Smart y Smart Pro",desc:"Entender quiénes son los usuarios de los datáfonos Smart y Smart Pro.",vertical:"Payments",status:"done",date:"Nov 2025",users:0,link:"https://docs.google.com/presentation/d/1a6d63U0YnI6VEXItO9Ijl7fh4kY9uhCGefewky0o9K8/edit"},
+  {title:"User Persona: Link de Pago",desc:"Análisis comparativo de situaciones de uso, fricciones, valor percibido y oportunidades de crecimiento.",vertical:"Payments",status:"done",date:"Feb 2026",users:0,link:"https://docs.google.com/presentation/d/1hwbM6WecZcb0h97ELAkT0Br9cxl5tKF_3YyvLP2sDz0/edit"},
+  {title:"Discovery Comercios Perú",desc:"Entender el mercado de negocios micro y nano en Perú de cara al lanzamiento de Bold.",vertical:"Payments",status:"done",date:"Feb 2026",users:0,link:"https://docs.google.com/presentation/d/1uBjZnmzhorxX9H52mvP8WnKURZ6bURsdhHRei8lNtvY/edit"},
+  {title:"User Persona: Botón de Pago",desc:"Entender a fondo los usuarios de botón de pago de Bold.",vertical:"Payments",status:"pending",date:"En curso",users:0,link:""},
+  {title:"Tap on Phone",desc:"Identificar los detonantes y barreras del comercio y consumidor para adoptar el pago por celular.",vertical:"Payments",status:"pending",date:"En curso",users:0,link:""},
+  {title:"Consumers: Cuenta y Bolsillos",desc:"Entender qué factores determinan la percepción, uso, satisfacción y decisión de apertura o cierre de cuentas bancarias.",vertical:"Banking",status:"done",date:"Nov 2025",users:0,link:"https://docs.google.com/presentation/d/1RFaLXBSc6BHL1nRXmywGYevJgRMIfRbT6ZpMCjpwSVQ/edit"},
+  {title:"CDT y Ahorro",desc:"Entender los drivers de uso de CDT y las tensiones que tienen hoy en día.",vertical:"Banking",status:"done",date:"Dic 2025",users:0,link:"https://docs.google.com/presentation/d/1hq4Nd4XO6yBsgnve347yo0Z-he_5Zj5Mmp5HZMsr1dE/edit"},
+  {title:"Pay In 4",desc:"Entender a profundidad quién es el usuario real para este nuevo producto.",vertical:"Banking",status:"done",date:"Ene 2025",users:0,link:"https://docs.google.com/presentation/d/18qUVz3jmoYYqPzM4AJIDu_otK8kaPTW3QHFmJ8PbXEs/edit"},
+  {title:"Defining QR Bold",desc:"Entender el ambiente competitivo y el usuario de QR.",vertical:"Banking",status:"done",date:"Ago 2025",users:0,link:"https://docs.google.com/presentation/d/1-qPquJnpztI6-PU-CRiNyU-LM5vBY-Zqn1FyfN8f9Jg/edit"},
+  {title:"User Persona: Cuenta Pro",desc:"User persona centrado en usuarios de cuentas empresariales.",vertical:"Banking",status:"pending",date:"En curso",users:0,link:""},
+  {title:"User Persona: Crédito",desc:"User persona de usuarios con usabilidad de los diferentes créditos en Colombia.",vertical:"Banking",status:"pending",date:"En curso",users:0,link:""},
+  {title:"CDT",desc:"Entender nuestros inversionistas actuales de CDT y qué más necesitan en la cuenta Bold más allá de rentabilidad.",vertical:"Banking",status:"pending",date:"En curso",users:0,link:""},
+  {title:"Super App y Super Panel",desc:"Entender los comportamientos, motivaciones, necesidades y fricciones al utilizar el Panel y la app de Bold.",vertical:"Software",status:"done",date:"Oct 2025",users:0,link:"https://docs.google.com/presentation/d/1fxUhUxPSmJ1zt9ae8G0xdLhCdgslr_RVFSZcpwlHhjQ/edit"},
+  {title:"Bold POS",desc:"Entender la percepción de nuestros productos en micro y nano vs SMBs.",vertical:"Software",status:"done",date:"Ago 2025",users:0,link:"https://docs.google.com/presentation/d/17zEXcyfCnVolQLUqxWgeDcn1Emesy5b5WUpGvSlYrQo/edit"},
+  {title:"Competencia Bold POS",desc:"Comprender la experiencia, percepciones y necesidades de los comerciantes en relación con sus sistemas POS actuales.",vertical:"Software",status:"done",date:"Oct 2025",users:0,link:"https://docs.google.com/presentation/d/16uckNbxcbE_MblnSQEEMouotteH8jcwsqwHldAjO4W4/edit"},
+  {title:"User Persona: Bold POS",desc:"Entender a fondo los usuarios de Bold POS y crear sus Jobs to be Done.",vertical:"Software",status:"pending",date:"En curso",users:0,link:""},
+  {title:"Usuarios: SMB",desc:"Quiénes son nuestros comercios SMB: perfil, comportamientos y necesidades.",vertical:"Usuarios",status:"done",date:"Ene 2025",users:0,link:"https://docs.google.com/presentation/d/1drIkfJb0AdxNFDDAVo5GmrxN0FTzW8qHXPTsgxXBYTg/edit"},
+  {title:"Comercios con OB sin 1era TX",desc:"Entender la razón por la cual los usuarios que hacen el onboarding no realizan su primera transacción.",vertical:"Usuarios",status:"done",date:"Nov 2025",users:0,link:"https://docs.google.com/presentation/d/1LBZwXWAyKWqgYSedTNPG67GMLkdQb6aNLy8a48uN_6M/edit"},
+  {title:"Salud de Marca",desc:"Conocer la salud de marca de Bold en función de variables de conocimiento y experiencia.",vertical:"Usuarios",status:"done",date:"Ene 2026",users:0,link:"https://docs.google.com/presentation/d/1w8KNsCIldUdSwY_k-Y_dANSSKipNwfBj/edit"},
+  {title:"Consumers",desc:"Entender a fondo la categoría de consumers.",vertical:"Usuarios",status:"pending",date:"En curso",users:0,link:""},
+  {title:"Usuarios Enterprise",desc:"Entender a fondo los usuarios enterprise de Bold.",vertical:"Usuarios",status:"pending",date:"En curso",users:0,link:""},
+  {title:"Recibir y Enviar Pagos al Exterior",desc:"Qué necesitan los usuarios para pagos y transferencias al exterior.",vertical:"Producto",status:"pending",date:"En curso",users:0,link:""},
+  {title:"Tarjeta Débito en Wallet + Consumers",desc:"Investigación sobre el uso y percepción de la tarjeta débito dentro del ecosistema Wallet.",vertical:"Producto",status:"pending",date:"En curso",users:0,link:""}
+];
+
 let data = [];
 let kbEntries = [];
 let editingIndex = null;
 let statusFilter = null;
 let verticalFilter = null;
 
-// ── STORAGE ──────────────────────────────────────────────
-async function saveData(){
+function saveData(){
   try{ localStorage.setItem('bold_investigations', JSON.stringify(data)); }catch(e){}
 }
-async function saveKb(){
+function saveKb(){
   try{ localStorage.setItem('bold_kb_entries', JSON.stringify(kbEntries)); }catch(e){}
 }
-async function loadData(){
+function loadData(){
   try{
     const r = localStorage.getItem('bold_investigations');
     if(r) data = JSON.parse(r);
@@ -418,31 +420,7 @@ async function loadData(){
     const r2 = localStorage.getItem('bold_kb_entries');
     if(r2) kbEntries = JSON.parse(r2);
   }catch(e){}
-rar patrones, dolores y frustraciones.",vertical:"Payments",status:"done",date:"Ene 2025",users:0,link:"https://docs.google.com/presentation/d/1Kr2dJmpc3MPpOz-GWTmd3K1TUCitMXmQvW1uSpx63us/edit"},
-    {title:"Sono QR",desc:"Percepción del Sono QR dividido por segmentos de usuarios.",vertical:"Payments",status:"done",date:"Oct 2025",users:0,link:"https://docs.google.com/presentation/d/1pA91et--_l4nSIXcqoFwbavx0i2S0SIy6g8kt7buy3E/edit"},
-    {title:"User Persona: Smart y Smart Pro",desc:"Entender quiénes son los usuarios de los datáfonos Smart y Smart Pro.",vertical:"Payments",status:"done",date:"Nov 2025",users:0,link:"https://docs.google.com/presentation/d/1a6d63U0YnI6VEXItO9Ijl7fh4kY9uhCGefewky0o9K8/edit"},
-    {title:"User Persona: Link de Pago",desc:"Análisis comparativo de situaciones de uso, fricciones, valor percibido y oportunidades de crecimiento para cada segmento.",vertical:"Payments",status:"done",date:"Feb 2026",users:0,link:"https://docs.google.com/presentation/d/1hwbM6WecZcb0h97ELAkT0Br9cxl5tKF_3YyvLP2sDz0/edit"},
-    {title:"Consumers: Cuenta y Bolsillos",desc:"Entender qué factores determinan la percepción, uso, satisfacción y decisión de apertura o cierre de cuentas bancarias.",vertical:"Banking",status:"done",date:"Nov 2025",users:0,link:"https://docs.google.com/presentation/d/1RFaLXBSc6BHL1nRXmywGYevJgRMIfRbT6ZpMCjpwSVQ/edit"},
-    {title:"CDT y Ahorro",desc:"Entender los drivers de uso de CDT y las tensiones que tienen hoy en día.",vertical:"Banking",status:"done",date:"Dic 2025",users:0,link:"https://docs.google.com/presentation/d/1hq4Nd4XO6yBsgnve347yo0Z-he_5Zj5Mmp5HZMsr1dE/edit"},
-    {title:"Pay In 4",desc:"Entender a profundidad quién es el usuario real para este nuevo producto y validar si esta solución tiene la fuerza necesaria para convertir a Bold en su cuenta principal.",vertical:"Banking",status:"done",date:"Ene 2025",users:0,link:"https://docs.google.com/presentation/d/18qUVz3jmoYYqPzM4AJIDu_otK8kaPTW3QHFmJ8PbXEs/edit"},
-    {title:"Super App y Super Panel",desc:"Entender los comportamientos, motivaciones, necesidades y fricciones que tienen los dueños y usuarios de los comercios al utilizar el Panel y la app de Bold.",vertical:"Software",status:"done",date:"Oct 2025",users:0,link:"https://docs.google.com/presentation/d/1fxUhUxPSmJ1zt9ae8G0xdLhCdgslr_RVFSZcpwlHhjQ/edit"},
-    {title:"Bold POS",desc:"Entender la percepción de nuestros productos en micro y nano vs SMBs.",vertical:"Software",status:"done",date:"Ago 2025",users:0,link:"https://docs.google.com/presentation/d/17zEXcyfCnVolQLUqxWgeDcn1Emesy5b5WUpGvSlYrQo/edit"},
-    {title:"Competencia Bold POS",desc:"Comprender de manera integral la experiencia, percepciones y necesidades de los comerciantes en relación con sus sistemas de punto de venta actuales.",vertical:"Software",status:"done",date:"Oct 2025",users:0,link:"https://docs.google.com/presentation/d/16uckNbxcbE_MblnSQEEMouotteH8jcwsqwHldAjO4W4/edit"},
-    {title:"Usuarios: SMB",desc:"Quiénes son nuestros comercios SMB: perfil, comportamientos y necesidades.",vertical:"Usuarios",status:"done",date:"Ene 2025",users:0,link:"https://docs.google.com/presentation/d/1drIkfJb0AdxNFDDAVo5GmrxN0FTzW8qHXPTsgxXBYTg/edit"},
-    {title:"Comercios con OB sin 1era TX",desc:"Entender la razón por la cual aquellos usuarios que hacen el onboarding no realizan su primera transacción.",vertical:"Usuarios",status:"done",date:"Nov 2025",users:0,link:"https://docs.google.com/presentation/d/1LBZwXWAyKWqgYSedTNPG67GMLkdQb6aNLy8a48uN_6M/edit"},
-    {title:"Salud de Marca",desc:"Conocer la salud de marca de Bold en función de variables de conocimiento y experiencia.",vertical:"Usuarios",status:"done",date:"Ene 2026",users:0,link:"https://docs.google.com/presentation/d/1w8KNsCIldUdSwY_k-Y_dANSSKipNwfBj/edit"},
-    {title:"Discovery Comercios Perú",desc:"Entender el mercado de negocios micro y nano en Perú de cara al lanzamiento de Bold.",vertical:"Payments",status:"done",date:"Feb 2026",users:0,link:"https://docs.google.com/presentation/d/1uBjZnmzhorxX9H52mvP8WnKURZ6bURsdhHRei8lNtvY/edit"},
-    {title:"User Persona: Cuenta Pro",desc:"User persona centrado en usuarios de cuentas empresariales.",vertical:"Banking",status:"pending",date:"En curso",users:0,link:""},
-    {title:"User Persona: Crédito",desc:"User persona de usuarios con usabilidad de los diferentes créditos en Colombia.",vertical:"Banking",status:"pending",date:"En curso",users:0,link:""},
-    {title:"Consumers",desc:"Entender a fondo la categoría de consumers.",vertical:"Usuarios",status:"pending",date:"En curso",users:0,link:""},
-    {title:"Usuarios Enterprise",desc:"Entender a fondo los usuarios enterprise de Bold.",vertical:"Usuarios",status:"pending",date:"En curso",users:0,link:""},
-    {title:"User Persona: Botón de Pago",desc:"Entender a fondo los usuarios de botón de pago de Bold.",vertical:"Payments",status:"pending",date:"En curso",users:0,link:""},
-    {title:"User Persona: Bold POS",desc:"Entender a fondo los usuarios de Bold POS y crear sus Jobs to be Done.",vertical:"Software",status:"pending",date:"En curso",users:0,link:""},
-    {title:"Recibir y Enviar Pagos al Exterior",desc:"Qué necesitan o requieren los usuarios para pagos y transferencias al exterior.",vertical:"Producto",status:"pending",date:"En curso",users:0,link:""},
-    {title:"Tarjeta Débito en Wallet + Consumers",desc:"Investigación sobre el uso y percepción de la tarjeta débito dentro del ecosistema Wallet y segmento Consumers.",vertical:"Producto",status:"pending",date:"En curso",users:0,link:""},
-    {title:"Tap on Phone",desc:"Identificar los detonantes y barreras tanto del comercio como del consumidor para adoptar el pago por celular.",vertical:"Payments",status:"pending",date:"En curso",users:0,link:""},
-    {title:"CDT",desc:"Entender nuestros inversionistas actuales de CDT y qué más necesitan en la cuenta Bold más allá de rentabilidad.",vertical:"Banking",status:"pending",date:"En curso",users:0,link:""},
-  ];
+  if(!data.length) data = DEFAULT_DATA;
   refreshStats();
   applyFilters();
 }
@@ -453,7 +431,6 @@ function refreshStats(){
   document.getElementById('stat-pending').textContent = data.filter(d=>d.status==='pending').length;
 }
 
-// ── FILTERS ──────────────────────────────────────────────
 function applyFilters(){
   const q = document.querySelector('.search-bar').value.toLowerCase();
   let filtered = data.map((d,i)=>({...d,_i:i}));
@@ -479,7 +456,7 @@ function renderGrid(id, items, type){
       <h3>${d.title}</h3>
       <p>${d.desc}</p>
       <div class="card-footer">
-        <span class="card-date">${d.date}${d.users>0?' · '+d.users+' usuarios':''}</span>
+        <span class="card-date">${d.date}</span>
         <div class="card-meta-row"><div class="status-dot ${type==='done'?'dot-done':'dot-pending'}"></div></div>
       </div>
     </div>`).join('');
@@ -504,13 +481,12 @@ function openModal(i){
   document.getElementById('modal-tags').innerHTML=`<span class="vertical-tag ${vClass[d.vertical]||''}">${d.vertical}</span><span style="font-size:11px;padding:3px 10px;border-radius:10px;font-weight:600;${d.status==='done'?'background:rgba(107,210,130,0.15);color:#6bd282':'background:rgba(255,180,50,0.13);color:#ffb432'}">${d.status==='done'?'Terminada':'En progreso'}</span>`;
   document.getElementById('modal-title').textContent=d.title;
   document.getElementById('modal-desc').textContent=d.desc;
-  document.getElementById('modal-meta').textContent=`${d.date}${d.users>0?' · '+d.users+' usuarios encuestados':''}`;
-  document.getElementById('modal-link-wrap').innerHTML = d.link?`<a href="${d.link}" target="_blank" style="background:linear-gradient(135deg,#FF2847,#3E2566);color:#fff;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;padding:11px 22px;border-radius:12px;text-decoration:none;display:inline-block;">Ver presentación ↗</a>`:'';
+  document.getElementById('modal-meta').textContent=d.date;
+  document.getElementById('modal-link-wrap').innerHTML=d.link?`<a href="${d.link}" target="_blank" style="background:linear-gradient(135deg,#FF2847,#3E2566);color:#fff;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;padding:11px 22px;border-radius:12px;text-decoration:none;display:inline-block;">Ver presentación ↗</a>`:'';
   document.getElementById('modal').classList.add('open');
 }
 function closeModal(){document.getElementById('modal').classList.remove('open');}
 
-// ── IMPORTAR JSON AL KB ───────────────────────────────────
 function importKbFromJson(){
   const input = document.createElement('input');
   input.type = 'file';
@@ -518,39 +494,30 @@ function importKbFromJson(){
   input.onchange = async e => {
     const file = e.target.files[0];
     if(!file) return;
-    try {
+    try{
       const text = await file.text();
       const imported = JSON.parse(text);
       let count = 0;
       imported.forEach(item => {
         if(!item.titulo || !item.content) return;
-        const exists = kbEntries.findIndex(k => k.titulo === item.titulo);
-        const entry = {
-          id: exists > -1 ? kbEntries[exists].id : Date.now().toString() + count,
-          titulo: item.titulo,
-          vertical: item.vertical || '',
-          content: item.content,
-          updated: new Date().toLocaleDateString('es-CO')
-        };
-        if(exists > -1) kbEntries[exists] = entry;
+        const exists = kbEntries.findIndex(k=>k.titulo===item.titulo);
+        const entry = {id: exists>-1?kbEntries[exists].id:Date.now().toString()+count, titulo:item.titulo, vertical:item.vertical||'', content:item.content, updated:new Date().toLocaleDateString('es-CO')};
+        if(exists>-1) kbEntries[exists]=entry;
         else kbEntries.push(entry);
         count++;
       });
-      await saveKb();
+      saveKb();
       renderKbList();
-      alert(`✅ ${count} investigaciones cargadas al Knowledge Base.`);
-    } catch(e) {
-      alert('Error leyendo el archivo. Asegúrate de que sea el JSON generado por el script.');
-    }
+      alert('✅ '+count+' investigaciones cargadas al Knowledge Base.');
+    }catch(e){ alert('Error leyendo el archivo.'); }
   };
   input.click();
 }
 
-// ── KNOWLEDGE BASE ────────────────────────────────────────
 function openKbModal(id){
-  document.getElementById('kb-edit-id').value = id||'';
+  document.getElementById('kb-edit-id').value=id||'';
   if(id){
-    const e = kbEntries.find(k=>k.id===id);
+    const e=kbEntries.find(k=>k.id===id);
     if(e){
       document.getElementById('kb-modal-title').textContent='Editar hallazgos';
       document.getElementById('kb-titulo').value=e.titulo;
@@ -568,13 +535,13 @@ function openKbModal(id){
 function closeKbModal(){document.getElementById('kb-modal').classList.remove('open');}
 
 function saveKbEntry(){
-  const titulo = document.getElementById('kb-titulo').value.trim();
-  const vertical = document.getElementById('kb-vertical').value;
-  const content = document.getElementById('kb-content').value.trim();
+  const titulo=document.getElementById('kb-titulo').value.trim();
+  const vertical=document.getElementById('kb-vertical').value;
+  const content=document.getElementById('kb-content').value.trim();
   if(!titulo||!content){alert('Completa el título y los hallazgos.');return;}
-  const editId = document.getElementById('kb-edit-id').value;
+  const editId=document.getElementById('kb-edit-id').value;
   if(editId){
-    const idx = kbEntries.findIndex(k=>k.id===editId);
+    const idx=kbEntries.findIndex(k=>k.id===editId);
     if(idx>-1) kbEntries[idx]={id:editId,titulo,vertical,content,updated:new Date().toLocaleDateString('es-CO')};
   } else {
     kbEntries.push({id:Date.now().toString(),titulo,vertical,content,updated:new Date().toLocaleDateString('es-CO')});
@@ -586,22 +553,19 @@ function saveKbEntry(){
 
 function deleteKbEntry(id){
   if(!confirm('¿Eliminar estos hallazgos de la IA?'))return;
-  kbEntries = kbEntries.filter(k=>k.id!==id);
+  kbEntries=kbEntries.filter(k=>k.id!==id);
   saveKb();
   renderKbList();
 }
 
 function renderKbList(){
-  const el = document.getElementById('kb-list');
-  if(!kbEntries.length){
-    el.innerHTML='<div class="kb-empty">No hay hallazgos cargados aún. Agrega contenido para que la IA responda con datos reales.</div>';
-    return;
-  }
-  el.innerHTML = kbEntries.map(k=>`
+  const el=document.getElementById('kb-list');
+  if(!kbEntries.length){el.innerHTML='<div class="kb-empty">No hay hallazgos cargados aún.</div>';return;}
+  el.innerHTML=kbEntries.map(k=>`
     <div class="kb-item">
       <div class="kb-item-info">
         <h4>${k.titulo}</h4>
-        <p>${k.vertical||'Sin vertical'} · Actualizado ${k.updated} · ${k.content.length} caracteres</p>
+        <p>${k.vertical||'Sin vertical'} · ${k.updated} · ${k.content.length} caracteres</p>
       </div>
       <div class="kb-item-actions">
         <button class="btn-secondary" style="font-size:11px;padding:5px 12px;" onclick="openKbModal('${k.id}')">Editar</button>
@@ -612,87 +576,64 @@ function renderKbList(){
 
 function buildKbContext(){
   if(!kbEntries.length) return '';
-  return '\n\nCONOCIMIENTO BASE — INVESTIGACIONES REALES DE BOLD:\n' +
-    kbEntries.map(k=>`\n## ${k.titulo}${k.vertical?' ('+k.vertical+')':''}\n${k.content}`).join('\n');
+  return '\n\nCONOCIMIENTO BASE — INVESTIGACIONES REALES DE BOLD:\n'+kbEntries.map(k=>`\n## ${k.titulo}${k.vertical?' ('+k.vertical+')':''}\n${k.content}`).join('\n');
 }
 
-// ── SOLICITAR ─────────────────────────────────────────────
 const FIXED_QUESTIONS = [
-  {pregunta:'¿Cuál es la fecha límite o urgencia para tener resultados de esta investigación?', tipo:'fija'},
-  {pregunta:'¿Quién tomará decisiones con base en los hallazgos? (ej: producto, marketing, C-level)', tipo:'fija'},
-  {pregunta:'¿Existe alguna hipótesis previa que quieras validar o refutar?', tipo:'fija'},
+  {pregunta:'¿Cuál es la fecha límite o urgencia para tener resultados?',tipo:'fija'},
+  {pregunta:'¿Quién tomará decisiones con base en los hallazgos?',tipo:'fija'},
+  {pregunta:'¿Existe alguna hipótesis previa que quieras validar o refutar?',tipo:'fija'}
 ];
-let clarifyQuestions = [];
+let clarifyQuestions=[];
 
 async function generateClarifications(){
-  const nombre = document.getElementById('f-nombre').value.trim();
-  const prod = document.getElementById('f-producto').value.trim();
-  const seg = document.getElementById('f-segmento').value.trim();
-  const obj = document.getElementById('f-objetivo').value.trim();
+  const nombre=document.getElementById('f-nombre').value.trim();
+  const prod=document.getElementById('f-producto').value.trim();
+  const seg=document.getElementById('f-segmento').value.trim();
+  const obj=document.getElementById('f-objetivo').value.trim();
   if(!nombre||!prod||!seg||!obj){alert('Por favor completa todos los campos obligatorios.');return;}
   goSolicitarStep(2);
-  const container = document.getElementById('clarify-container');
+  const container=document.getElementById('clarify-container');
   container.innerHTML='<div class="empty">Generando preguntas...</div>';
-  document.getElementById('btn-enviar').disabled = true;
-
-  const prompt = `Eres experto en investigación de mercado para Bold, fintech colombiana de pagos.
+  document.getElementById('btn-enviar').disabled=true;
+  const prompt=`Eres experto en investigación de mercado para Bold, fintech colombiana de pagos.
 Alguien solicita una investigación con este brief:
 - Producto: ${prod}
 - Segmento: ${seg}
 - Objetivo: ${obj}
 - Contexto: ${document.getElementById('f-contexto').value||'N/A'}
-
-Genera EXACTAMENTE 3 preguntas de clarificación dinámicas y MUY ESPECÍFICAS para este brief en particular. 
-NO hagas preguntas genéricas ni sobre fechas/decisores (esas ya se hacen por separado).
-Enfócate en el CONTENIDO específico: metodología ideal, métricas clave, casos de uso concretos, usuarios específicos a entrevistar, etc.
-
-Responde SOLO en JSON (sin markdown, sin texto extra):
+Genera EXACTAMENTE 3 preguntas de clarificación dinámicas y MUY ESPECÍFICAS para este brief.
+NO hagas preguntas genéricas ni sobre fechas/decisores.
+Responde SOLO en JSON (sin markdown):
 [{"pregunta":"..."},{"pregunta":"..."},{"pregunta":"..."}]`;
-
   try{
-    const r = await fetch(API_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:500,messages:[{role:'user',content:prompt}]})});
-    const d = await r.json();
-    const text = d.content?.map(b=>b.text||'').join('')||'[]';
-    const dynamic = JSON.parse(text.replace(/```json|```/g,'').trim()).map(q=>({...q,tipo:'dinamica'}));
-    clarifyQuestions = [...FIXED_QUESTIONS, ...dynamic];
-  }catch(e){
-    clarifyQuestions = [...FIXED_QUESTIONS];
-  }
-
-  container.innerHTML = clarifyQuestions.map((q,i)=>`
+    const r=await fetch(API_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:500,messages:[{role:'user',content:prompt}]})});
+    const d=await r.json();
+    const text=d.content?.map(b=>b.text||'').join('')||'[]';
+    const dynamic=JSON.parse(text.replace(/```json|```/g,'').trim()).map(q=>({...q,tipo:'dinamica'}));
+    clarifyQuestions=[...FIXED_QUESTIONS,...dynamic];
+  }catch(e){ clarifyQuestions=[...FIXED_QUESTIONS]; }
+  container.innerHTML=clarifyQuestions.map((q,i)=>`
     <div class="clarify-q">
       <span class="clarify-badge ${q.tipo==='fija'?'fija':'dinamica'}">${q.tipo==='fija'?'Siempre se pregunta':'Específica para tu brief'}</span>
       <p>${i+1}. ${q.pregunta}</p>
       <textarea id="cq-${i}" placeholder="Tu respuesta..."></textarea>
     </div>`).join('');
-  document.getElementById('btn-enviar').disabled = false;
+  document.getElementById('btn-enviar').disabled=false;
 }
 
 async function submitBrief(){
-  const answers = clarifyQuestions.map((q,i)=>({pregunta:q.pregunta,respuesta:document.getElementById('cq-'+i)?.value||'Sin respuesta'}));
-  const brief = {
-    nombre: document.getElementById('f-nombre').value,
-    producto: document.getElementById('f-producto').value,
-    segmento: document.getElementById('f-segmento').value,
-    objetivo: document.getElementById('f-objetivo').value,
-    contexto: document.getElementById('f-contexto').value,
-    clarificaciones: answers
-  };
-  document.getElementById('btn-enviar').disabled = true;
-  document.getElementById('btn-enviar').textContent = 'Enviando...';
-
-  const briefText = `NUEVA SOLICITUD DE INVESTIGACIÓN\n\nSolicitante: ${brief.nombre}\nProducto: ${brief.producto}\nSegmento: ${brief.segmento}\nObjetivo: ${brief.objetivo}\nContexto: ${brief.contexto||'N/A'}\n\nCLARIFICACIONES:\n${answers.map((a,i)=>`${i+1}. ${a.pregunta}\n→ ${a.respuesta}`).join('\n\n')}`;
-
-  const genPrompt = `Eres experto en investigación de mercado para Bold, fintech colombiana de pagos. Con base en este brief y las clarificaciones, genera entre 15 y 20 preguntas de encuesta listas para enviar a usuarios reales.\n\n${briefText}\n\nInstrucciones: mezcla cerradas (Likert 1-5, opción múltiple, NPS) con 2-3 abiertas. Indica el tipo entre paréntesis. Ordena de menor a mayor fricción. Solo las preguntas numeradas, sin introducción ni texto extra.`;
-
+  const answers=clarifyQuestions.map((q,i)=>({pregunta:q.pregunta,respuesta:document.getElementById('cq-'+i)?.value||'Sin respuesta'}));
+  const brief={nombre:document.getElementById('f-nombre').value,producto:document.getElementById('f-producto').value,segmento:document.getElementById('f-segmento').value,objetivo:document.getElementById('f-objetivo').value,contexto:document.getElementById('f-contexto').value};
+  document.getElementById('btn-enviar').disabled=true;
+  document.getElementById('btn-enviar').textContent='Enviando...';
+  const briefText=`NUEVA SOLICITUD\n\nSolicitante: ${brief.nombre}\nProducto: ${brief.producto}\nSegmento: ${brief.segmento}\nObjetivo: ${brief.objetivo}\nContexto: ${brief.contexto||'N/A'}\n\nCLARIFICACIONES:\n${answers.map((a,i)=>`${i+1}. ${a.pregunta}\n→ ${a.respuesta}`).join('\n\n')}`;
   try{
-    const r = await fetch(API_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:genPrompt}]})});
-    const d = await r.json();
-    const questions = d.content?.map(b=>b.text||'').join('')||'';
-    const emailBody = `${briefText}\n\n---\nPREGUNTAS GENERADAS PARA LA AGENCIA:\n\n${questions}`;
-    await fetch(API_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:200,mcp_servers:[{type:'url',url:'https://gmail.mcp.claude.com/mcp',name:'gmail-mcp'}],messages:[{role:'user',content:`Envía un email a antonio.ordonez@bold.co con asunto "Nueva solicitud de investigación: ${brief.producto}" y este cuerpo:\n${emailBody}`}]})});
+    const r=await fetch(API_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:`Genera 15-20 preguntas de encuesta para esta investigación:\n${briefText}\nMezcla cerradas y abiertas. Solo las preguntas numeradas.`}]})});
+    const d=await r.json();
+    const questions=d.content?.map(b=>b.text||'').join('')||'';
+    await fetch(API_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:200,mcp_servers:[{type:'url',url:'https://gmail.mcp.claude.com/mcp',name:'gmail-mcp'}],messages:[{role:'user',content:`Envía email a antonio.ordonez@bold.co asunto "Nueva solicitud: ${brief.producto}" cuerpo:\n${briefText}\n\nPREGUNTAS:\n${questions}`}]})});
   }catch(e){}
-
   goSolicitarStep(3);
 }
 
@@ -712,9 +653,8 @@ function resetSolicitar(){
   goSolicitarStep(1);
 }
 
-// ── ADMIN ─────────────────────────────────────────────────
 function checkPass(){
-  const p = document.getElementById('admin-pass').value;
+  const p=document.getElementById('admin-pass').value;
   if(p===ADMIN_PASSWORD){
     document.getElementById('admin-lock').style.display='none';
     document.getElementById('admin-content').style.display='block';
@@ -733,8 +673,8 @@ function lockAdmin(){
 }
 
 function renderAdminTable(){
-  const tb = document.getElementById('admin-tbody');
-  tb.innerHTML = data.map((d,i)=>`
+  const tb=document.getElementById('admin-tbody');
+  tb.innerHTML=data.map((d,i)=>`
     <tr>
       <td style="font-weight:500;max-width:260px;">${d.title}</td>
       <td><span class="vertical-tag ${vClass[d.vertical]||''}" style="margin:0;">${d.vertical}</span></td>
@@ -748,17 +688,17 @@ function renderAdminTable(){
 }
 
 function saveInvestigation(){
-  const titulo = document.getElementById('a-titulo').value.trim();
-  const vertical = document.getElementById('a-vertical').value;
-  const desc = document.getElementById('a-desc').value.trim();
-  const status = document.getElementById('a-status').value;
-  const fecha = document.getElementById('a-fecha').value.trim();
-  const users = parseInt(document.getElementById('a-usuarios').value)||0;
-  const link = document.getElementById('a-link').value.trim();
+  const titulo=document.getElementById('a-titulo').value.trim();
+  const vertical=document.getElementById('a-vertical').value;
+  const desc=document.getElementById('a-desc').value.trim();
+  const status=document.getElementById('a-status').value;
+  const fecha=document.getElementById('a-fecha').value.trim();
+  const users=parseInt(document.getElementById('a-usuarios').value)||0;
+  const link=document.getElementById('a-link').value.trim();
   if(!titulo||!vertical||!desc){alert('Completa título, vertical y descripción.');return;}
-  const item = {title:titulo,vertical,desc,status,date:fecha||'Sin fecha',users,link};
-  if(editingIndex!==null){data[editingIndex]=item;}
-  else{data.push(item);}
+  const item={title:titulo,vertical,desc,status,date:fecha||'Sin fecha',users,link};
+  if(editingIndex!==null) data[editingIndex]=item;
+  else data.push(item);
   saveData();
   refreshStats();
   applyFilters();
@@ -767,8 +707,8 @@ function saveInvestigation(){
 }
 
 function editInvestigation(i){
-  const d = data[i];
-  editingIndex = i;
+  const d=data[i];
+  editingIndex=i;
   document.getElementById('a-titulo').value=d.title;
   document.getElementById('a-vertical').value=d.vertical;
   document.getElementById('a-desc').value=d.desc;
@@ -790,7 +730,7 @@ function cancelEdit(){
 }
 
 function deleteInvestigation(i){
-  if(!confirm(`¿Eliminar "${data[i].title}"?`))return;
+  if(!confirm('¿Eliminar "'+data[i].title+'"?'))return;
   data.splice(i,1);
   saveData();
   refreshStats();
@@ -798,15 +738,13 @@ function deleteInvestigation(i){
   renderAdminTable();
 }
 
-// ── CHAT ──────────────────────────────────────────────────
 let chatHistory=[];
-
 function buildSystemPrompt(){
-  const kb = buildKbContext();
-  return `Eres el asistente de investigación de mercado de Bold, fintech colombiana líder en pagos. 
-Respondes preguntas sobre investigaciones organizadas en 5 verticales: Payments, Banking, Usuarios, Software y Producto.
+  const kb=buildKbContext();
+  return `Eres IAntonio, el asistente de investigación de mercado de Bold, fintech colombiana líder en pagos.
+Respondes preguntas sobre investigaciones en 5 verticales: Payments, Banking, Usuarios, Software y Producto.
 Eres conciso, directo y basas tus respuestas SOLO en la información real disponible.
-Si no tienes información sobre algo, lo dices claramente en vez de inventar.${kb}`;
+Si no tienes información sobre algo, lo dices claramente.${kb}`;
 }
 
 async function sendChat(){
